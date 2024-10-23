@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Demande de Permis de Pêche</title>
+</head>
+<body>
+<h1>Demande de Permis de Pêche</h1>
+<form th:action="@{/permis/demande}" th:object="${permis}" method="post">
+  <label for="nom">Nom:</label>
+  <input type="text" th:field="*{nom}" id="nom" /><br/>
+  <label for="adresse">Adresse:</label>
+  <input type="text" th:field="*{adresse}" id="adresse" /><br/>
+  <label for="dateNaissance">Date de Naissance:</label>
+  <input type="date" th:field="*{dateNaissance}" id="dateNaissance" /><br/>
+  <button type="submit">Demander</button>
+</form>
+</body>
+</html>

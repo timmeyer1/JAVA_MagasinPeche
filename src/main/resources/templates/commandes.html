@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Commandes</title>
+</head>
+<body>
+<h1>Commandes</h1>
+<ul>
+    <li th:each="commande : ${commandes}">
+        <span th:text="${commande.id}"></span> -
+        <span th:text="${commande.dateCommande}"></span> -
+        <span th:text="${commande.total}"></span> €
+    </li>
+</ul>
+</body>
+</html>
