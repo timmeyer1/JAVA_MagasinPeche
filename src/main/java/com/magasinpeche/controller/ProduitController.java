@@ -46,7 +46,7 @@ public class ProduitController {
     }
 
     @GetMapping("/modifier/{id}")
-    public String afficherFormulaireModification(@PathVariable Long id, Model model) {
+    public String afficherFormulaireModification(@PathVariable("id") Long id, Model model) {
         Produit produit = produitService.getProduitById(id);
         if (produit != null) {
             model.addAttribute("produit", produit);
@@ -56,10 +56,11 @@ public class ProduitController {
     }
 
     @PostMapping("/{id}")
-    public String updateProduit(@PathVariable Long id, @ModelAttribute Produit produitDetails) {
+    public String updateProduit(@PathVariable("id") Long id, @ModelAttribute Produit produitDetails) {
         produitService.updateProduit(id, produitDetails);
         return "redirect:/produits"; // Redirige vers la liste des produits
     }
+
 
     @GetMapping("/supprimer/{id}")
     public String supprimerProduit(@PathVariable Long id) {
