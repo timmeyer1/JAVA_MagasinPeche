@@ -35,7 +35,6 @@ nav ul li a {
 
 /* Hero section */
 .hero {
-    background: url('/images/fishing-background.jpg') no-repeat center center/cover; /* Image d'arrière-plan */
     color: white;
     padding: 50px 20px;
     text-align: center;

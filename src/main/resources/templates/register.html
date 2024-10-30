@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>Inscription</title>
+    <title>Inscription</title>
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
 </head>
 <body>
-<h2>Inscription</h2>
-<form th:action="@{/register}" th:object="${client}" method="post">
-  <input type="text" th:field="*{nom}" placeholder="Nom" required/>
-  <input type="text" th:field="*{prenom}" placeholder="Prénom" required/>
-  <input type="email" th:field="*{email}" placeholder="Email" required/>
-  <input type="password" th:field="*{password}" placeholder="Mot de passe" required/>
-  <input type="text" th:field="*{adresse}" placeholder="Adresse"/>
-  <input type="text" th:field="*{telephone}" placeholder="Téléphone"/>
-  <button type="submit">S'inscrire</button>
-</form>
+<div class="container">
+    <h2>Inscription</h2>
+    <form th:action="@{/register}" th:object="${client}" method="post">
+        <input type="text" th:field="*{nom}" placeholder="Nom" required/>
+        <input type="text" th:field="*{prenom}" placeholder="Prénom" required/>
+        <input type="email" th:field="*{email}" placeholder="Email" required/>
+        <input type="password" th:field="*{password}" placeholder="Mot de passe" required/>
+        <input type="text" th:field="*{adresse}" placeholder="Adresse"/>
+        <input type="text" th:field="*{telephone}" placeholder="Téléphone"/>
+        <button type="submit">S'inscrire</button>
+    </form>
+    <a th:href="@{/login}">Déjà un compte ? Se connecter</a>
+</div>
 </body>
 </html>
