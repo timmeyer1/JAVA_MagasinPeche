@@ -1,44 +1,36 @@
 package com.magasinpeche.config;
 
-import com.magasinpeche.service.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private final CustomUserDetailsService userDetailsService;
-    private final PasswordEncoder passwordEncoder;
-
-    // Injection par constructeur pour éviter les références circulaires
-    public SecurityConfig(CustomUserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
-        this.passwordEncoder = new BCryptPasswordEncoder();
-    }
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/register", "/login").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/register", "/login").permitAll() // Autoriser l'accès à tous pour ces pages
+                        .anyRequest().authenticated() // Toutes les autres requêtes nécessitent une authentification
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
-                        .loginProcessingUrl("/login")
                         .defaultSuccessUrl("/profil", true)
                         .failureUrl("/login?error=true")
+                        .successHandler(authenticationSuccessHandler()) // Redirection si déjà connecté
                 )
                 .logout((logout) -> logout
-                        .logoutUrl("/logout") // URL pour déclencher la déconnexion
-                        .logoutSuccessUrl("/login?logout=true") // Rediriger après la déconnexion
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login?logout=true")
                         .permitAll()
                 );
 
@@ -47,11 +39,12 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return this.passwordEncoder;
+        return new BCryptPasswordEncoder();
     }
 
-    // Méthode configureGlobal sans `@Autowired`
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
+    // Définir un gestionnaire de succès d'authentification
+    @Bean
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
+        return new SimpleUrlAuthenticationSuccessHandler("/profil"); // Page de redirection pour les utilisateurs connectés
     }
 }
