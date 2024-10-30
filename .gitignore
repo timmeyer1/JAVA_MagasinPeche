@@ -34,3 +34,4 @@ build/
 
 ### Project ###
 uploads/*
+!uploads/.gitkeep

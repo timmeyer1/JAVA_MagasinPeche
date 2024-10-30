@@ -1,6 +1,9 @@
 package com.magasinpeche.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Client {
@@ -8,33 +11,31 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String email;
+    private String password;
+
     private String nom;
     private String prenom;
-    private String email; // Utilisé comme "username" pour l'authentification
-    private String password;
     private String adresse;
     private String telephone;
 
-    // Constructeurs
-    public Client() {
+    // Getters et setters
+
+
+    public String getEmail() {
+        return email;
     }
 
-    public Client(String nom, String prenom, String email, String password, String adresse, String telephone) {
-        this.nom = nom;
-        this.prenom = prenom;
+    public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
         this.password = password;
-        this.adresse = adresse;
-        this.telephone = telephone;
-    }
-
-    // Getters et Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNom() {
@@ -51,22 +52,6 @@ public class Client {
 
     public void setPrenom(String prenom) {
         this.prenom = prenom;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getAdresse() {
