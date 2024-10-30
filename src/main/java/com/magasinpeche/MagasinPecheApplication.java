@@ -18,5 +18,4 @@ public class MagasinPecheApplication implements WebMvcConfigurer {
 		registry.addResourceHandler("/uploads/**")
 				.addResourceLocations("file:uploads/");
 	}
-
 }
