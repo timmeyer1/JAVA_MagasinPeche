@@ -83,7 +83,7 @@ public class ProduitController {
         return "redirect:/produits"; // Redirige vers la liste si le produit n'existe pas
     }
 
-    @PostMapping("/{id}") // Modifiez le chemin pour qu'il corresponde au formulaire
+    @PostMapping("/{id}")
     public String updateProduit(@PathVariable("id") Long id,
                                 @ModelAttribute Produit produitDetails,
                                 @RequestParam("imageFile") MultipartFile imageFile) {

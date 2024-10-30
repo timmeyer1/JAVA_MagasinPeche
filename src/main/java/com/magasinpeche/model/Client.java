@@ -10,8 +10,8 @@ public class Client {
 
     private String nom;
     private String prenom;
-    private String email;
-    private String motDePasse;
+    private String email; // Utilisé comme "username" pour l'authentification
+    private String password;
     private String adresse;
     private String telephone;
 
@@ -19,11 +19,11 @@ public class Client {
     public Client() {
     }
 
-    public Client(String nom, String prenom, String email, String motDePasse, String adresse, String telephone) {
+    public Client(String nom, String prenom, String email, String password, String adresse, String telephone) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
-        this.motDePasse = motDePasse;
+        this.password = password;
         this.adresse = adresse;
         this.telephone = telephone;
     }
@@ -61,12 +61,12 @@ public class Client {
         this.email = email;
     }
 
-    public String getMotDePasse() {
-        return motDePasse;
+    public String getPassword() {
+        return password;
     }
 
-    public void setMotDePasse(String motDePasse) {
-        this.motDePasse = motDePasse;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getAdresse() {

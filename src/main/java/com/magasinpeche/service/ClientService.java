@@ -3,6 +3,7 @@ package com.magasinpeche.service;
 import com.magasinpeche.model.Client;
 import com.magasinpeche.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,9 @@ import java.util.List;
 public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder; // Injection du PasswordEncoder
 
     public List<Client> getAllClients() {
         return clientRepository.findAll();
@@ -21,6 +25,7 @@ public class ClientService {
     }
 
     public Client createClient(Client client) {
+        client.setPassword(passwordEncoder.encode(client.getPassword())); // Encoder le mot de passe
         return clientRepository.save(client);
     }
 
@@ -30,7 +35,8 @@ public class ClientService {
             client.setNom(clientDetails.getNom());
             client.setPrenom(clientDetails.getPrenom());
             client.setEmail(clientDetails.getEmail());
-            client.setMotDePasse(clientDetails.getMotDePasse());
+
+            client.setPassword(passwordEncoder.encode(clientDetails.getPassword()));
             client.setAdresse(clientDetails.getAdresse());
             client.setTelephone(clientDetails.getTelephone());
             return clientRepository.save(client);
