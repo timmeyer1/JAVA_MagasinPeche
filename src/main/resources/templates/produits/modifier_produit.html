@@ -6,14 +6,14 @@
 </head>
 <body>
 <h1>Modifier le Produit</h1>
-<form action="#" th:action="@{/produits/{id}(id=${produit.id})}" method="post" th:object="${produit}">
+<form action="#" th:action="@{/produits/{id}(id=${produit.id})}" method="post" th:object="${produit}" enctype="multipart/form-data">
     <div>
         <label for="nom">Nom :</label>
-        <input type="text" id="nom" th:field="*{nom}" required />
+        <input type="text" id="nom" th:field="*{nom}" required/>
     </div>
     <div>
         <label for="prix">Prix :</label>
-        <input type="number" id="prix" th:field="*{prix}" required />
+        <input type="number" id="prix" th:field="*{prix}" required/>
     </div>
     <div>
         <label for="description">Description :</label>
@@ -21,7 +21,15 @@
     </div>
     <div>
         <label for="quantite">Quantité :</label>
-        <input type="number" id="quantite" th:field="*{quantite}" required />
+        <input type="number" id="quantite" th:field="*{quantite}" required/>
+    </div>
+    <div>
+        <label>Image actuelle:</label>
+        <img th:src="@{${produit.imageUrl}}" alt="Image du produit" style="width: 100px;"/>
+    </div>
+    <div>
+        <label for="imageFile">Nouvelle image (optionnel):</label>
+        <input type="file" name="file"/>
     </div>
     <div>
         <button type="submit">Modifier le Produit</button>

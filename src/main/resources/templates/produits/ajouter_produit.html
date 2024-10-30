@@ -6,14 +6,15 @@
 </head>
 <body>
 <h1>Ajouter un Nouveau Produit</h1>
-<form action="#" th:action="@{/produits/ajouter}" method="post" th:object="${produit}">
+<form th:action="@{/produits/ajouter}" method="post" th:object="${produit}" enctype="multipart/form-data">
+
   <div>
     <label for="nom">Nom :</label>
-    <input type="text" id="nom" th:field="*{nom}" required />
+    <input type="text" id="nom" th:field="*{nom}" required/>
   </div>
   <div>
     <label for="prix">Prix :</label>
-    <input type="number" id="prix" th:field="*{prix}" required />
+    <input type="number" id="prix" th:field="*{prix}" required/>
   </div>
   <div>
     <label for="description">Description :</label>
@@ -21,11 +22,16 @@
   </div>
   <div>
     <label for="quantite">Quantité :</label>
-    <input type="number" id="quantite" th:field="*{quantite}" required />
+    <input type="number" id="quantite" th:field="*{quantite}" required/>
   </div>
   <div>
-    <button type="submit">Ajouter le Produit</button>
+    <label for="imageFile">Image du produit :</label>
+    <input type="file" id="imageFile" name="imageFile" />
   </div>
+  <div>
+    <div>
+      <button type="submit">Ajouter le Produit</button>
+    </div>
 </form>
 <a href="/produits">Retour à la liste des produits</a>
 </body>

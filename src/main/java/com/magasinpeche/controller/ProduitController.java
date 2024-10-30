@@ -7,7 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Controller
@@ -15,6 +20,8 @@ import java.util.List;
 public class ProduitController {
     @Autowired
     private ProduitService produitService;
+
+    private static final String UPLOAD_DIR = "uploads/";
 
     @GetMapping
     public String getAllProduits(Model model) {
@@ -40,9 +47,19 @@ public class ProduitController {
     }
 
     @PostMapping("/ajouter")
-    public String createProduit(@ModelAttribute Produit produit) {
+    public String createProduit(@ModelAttribute Produit produit, @RequestParam("imageFile") MultipartFile imageFile) {
+        if (!imageFile.isEmpty()) {
+            try {
+                String fileName = imageFile.getOriginalFilename();
+                Path filePath = Paths.get("uploads", fileName);
+                Files.copy(imageFile.getInputStream(), filePath);
+                produit.setImageUrl("/uploads/" + fileName);  // Définir l'URL de l'image
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
         produitService.createProduit(produit);
-        return "redirect:/produits"; // Redirige vers la liste des produits
+        return "redirect:/produits";
     }
 
     @GetMapping("/modifier/{id}")
@@ -56,9 +73,20 @@ public class ProduitController {
     }
 
     @PostMapping("/{id}")
-    public String updateProduit(@PathVariable("id") Long id, @ModelAttribute Produit produitDetails) {
+    public String updateProduit(@PathVariable("id") Long id, @ModelAttribute Produit produitDetails,
+                                @RequestParam("imageFile") MultipartFile imageFile) {
+        if (!imageFile.isEmpty()) {
+            try {
+                String fileName = imageFile.getOriginalFilename();
+                Path filePath = Paths.get(UPLOAD_DIR + fileName);
+                Files.copy(imageFile.getInputStream(), filePath);
+                produitDetails.setImageUrl("/" + UPLOAD_DIR + fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         produitService.updateProduit(id, produitDetails);
-        return "redirect:/produits"; // Redirige vers la liste des produits
+        return "redirect:/produits";
     }
 
 
