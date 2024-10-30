@@ -1,0 +1,21 @@
+// highlightActiveLink.js
+
+// Fonction qui met en évidence le lien actif en fonction de l'URL actuelle
+function highlightActiveLink() {
+    // Récupère le chemin de l'URL actuelle (ex: "/produits")
+    const currentPath = window.location.pathname;
+
+    // Sélectionne tous les liens de navigation
+    const links = document.querySelectorAll("nav ul li a");
+
+    // Parcourt chaque lien et ajoute la classe "active" si l'URL correspond
+    links.forEach(link => {
+        // Si l'attribut href du lien correspond au chemin actuel, ajoute la classe
+        if (link.getAttribute("href") === currentPath) {
+            link.classList.add("active");
+        }
+    });
+}
+
+// Appel de la fonction après le chargement du contenu de la page
+document.addEventListener("DOMContentLoaded", highlightActiveLink);
