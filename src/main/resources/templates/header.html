@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Header</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+</head>
+<body>
+<header>
+    <h1>🎣 Pêche 3000</h1>
+    <nav>
+        <ul>
+            <li><a class="" id="home" th:href="@{/}">🏠 Accueil</a></li>
+            <li><a id="products" th:href="@{/produits}">🐟 Produits</a></li>
+            <li><a id="contests" th:href="@{/concours}">🎫 Concours</a></li>
+            <li><a class="" id="profile" th:href="@{/profil}">👤 Profil</a></li>
+        </ul>
+    </nav>
+</header>
+</body>
+</html>

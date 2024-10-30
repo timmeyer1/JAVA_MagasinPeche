@@ -13,8 +13,16 @@ body {
 header {
     background: #0077be; /* Couleur du header */
     color: white;
-    padding: 20px;
+    padding: 1px;
     text-align: center;
+}
+
+header a {
+  cursor: pointer;
+}
+
+header a:hover {
+  text-decoration: underline;
 }
 
 nav ul {

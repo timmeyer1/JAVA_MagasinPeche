@@ -5,6 +5,7 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
+<div th:replace="header :: header"></div>
 <h2>Bienvenue, <span th:text="${#authentication.name}"></span> !</h2>
 <p>Page de profil pour l'utilisateur connecté.</p>
 
