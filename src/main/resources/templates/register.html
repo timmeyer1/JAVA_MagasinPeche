@@ -9,7 +9,6 @@
 <div class="container">
     <div class="card">
         <h1 class="card_title">Inscription</h1>
-        <p class="card_title-info">Pen By Anna Batura</p>
         <form class="card_form" th:action="@{/register}" th:object="${client}" method="post">
             <div class="input">
                 <input type="text" th:field="*{nom}" class="input_field" required/>
@@ -24,10 +23,16 @@
                 <label class="input_label">Email</label>
             </div>
             <div class="input">
+                <input type="text" th:field="*{adresse}" class="input_field" required/>
+                <label class="input_label">Adresse</label>
+            </div>
+            <div class="input">
+                <input type="text" th:field="*{telephone}" class="input_field" required/>
+                <label class="input_label">Téléphone</label>
+            </div>
+            <div class="input">
                 <input type="password" th:field="*{password}" class="input_field" required/>
                 <label class="input_label">Mot de passe</label>
-
-                <div th:if="${param.error}" style="color:red;">Erreur : Email ou mot de passe invalide.</div>
 
                 <span class="input_eye">
                     <svg viewBox="0 0 146 74" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,14 +41,6 @@
                         <circle cx="73" cy="37" r="34" stroke-width="6"/>
                     </svg>
                 </span>
-            </div>
-            <div class="input">
-                <input type="text" th:field="*{adresse}" class="input_field"/>
-                <label class="input_label">Adresse</label>
-            </div>
-            <div class="input">
-                <input type="text" th:field="*{telephone}" class="input_field"/>
-                <label class="input_label">Téléphone</label>
             </div>
             <button type="submit" class="card_button">Inscription</button>
         </form>

@@ -24,10 +24,16 @@
                 <label class="input_label">Email</label>
             </div>
             <div class="input">
+                <input type="text" th:field="*{adresse}" class="input_field" required/>
+                <label class="input_label">Adresse</label>
+            </div>
+            <div class="input">
+                <input type="text" th:field="*{telephone}" class="input_field" required/>
+                <label class="input_label">Téléphone</label>
+            </div>
+            <div class="input">
                 <input type="password" th:field="*{password}" class="input_field" required/>
                 <label class="input_label">Mot de passe</label>
-
-                <div th:if="${param.error}" style="color:red;">Erreur : Email ou mot de passe invalide.</div>
 
                 <span class="input_eye">
                     <svg viewBox="0 0 146 74" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,14 +42,6 @@
                         <circle cx="73" cy="37" r="34" stroke-width="6"/>
                     </svg>
                 </span>
-            </div>
-            <div class="input">
-                <input type="text" th:field="*{adresse}" class="input_field"/>
-                <label class="input_label">Adresse</label>
-            </div>
-            <div class="input">
-                <input type="text" th:field="*{telephone}" class="input_field"/>
-                <label class="input_label">Téléphone</label>
             </div>
             <button type="submit" class="card_button">Inscription</button>
         </form>
@@ -54,7 +52,7 @@
     <div class="fish-shadow-con">
 
         <svg class="fish-shadow" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-             preserveAspectRatio="xMidYMin slice" viewBox="0 0 743 845">
+             preserveAspectRatio="xMidYMin slice" viewBox="0 0 760 845">
 
 
             <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
@@ -158,7 +156,7 @@
         </svg>
     </div>
     <svg class="fish" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-         preserveAspectRatio="xMidYMin slice" viewBox="0 0 743 845">
+         preserveAspectRatio="xMidYMin slice" viewBox="0 0 760 845">
 
         <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
             <path d="M 140 340 C 92 393 91 485 131 575 C 175 660 280 700 400 700 C 520 700 650 660 675 530 C 700 410 645 250 515 215 C 460 200 405 195 350 205 C 275 225 210 280 140 340 Z"
