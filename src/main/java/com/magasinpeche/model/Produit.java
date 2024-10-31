@@ -2,11 +2,16 @@ package com.magasinpeche.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 public class Produit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "date_creation")
+    private LocalDateTime dateCreation;
 
     private String nom;
     private String description;
@@ -26,6 +31,14 @@ public class Produit {
         this.quantite = quantite;
         this.categorie = categorie;
         this.imageUrl = imageUrl;
+    }
+
+    public LocalDateTime getDateCreation() {
+        return dateCreation;
+    }
+
+    public void setDateCreation(LocalDateTime dateCreation) {
+        this.dateCreation = dateCreation;
     }
 
     // Getters et Setters

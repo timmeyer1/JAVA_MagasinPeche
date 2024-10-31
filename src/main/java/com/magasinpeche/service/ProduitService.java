@@ -5,6 +5,7 @@ import com.magasinpeche.repository.ProduitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -16,11 +17,16 @@ public class ProduitService {
         return produitRepository.findAll();
     }
 
+    public List<Produit> getDerniersProduits() {
+        return produitRepository.findAllByOrderByDateCreationDesc();
+    }
+
     public Produit getProduitById(Long id) {
         return produitRepository.findById(id).orElse(null);
     }
 
     public Produit createProduit(Produit produit) {
+        produit.setDateCreation(LocalDateTime.now()); // set de la date de création
         return produitRepository.save(produit);
     }
 
