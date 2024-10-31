@@ -9,22 +9,6 @@ body {
     background-color: #f0f8ff; /* Couleur de fond */
 }
 
-/* Header */
-header {
-    background: #0077be; /* Couleur du header */
-    color: white;
-    padding: 1px;
-    text-align: center;
-}
-
-header a {
-  cursor: pointer;
-}
-
-header a:hover {
-  text-decoration: underline;
-}
-
 nav ul {
     list-style: none;
     padding: 0;

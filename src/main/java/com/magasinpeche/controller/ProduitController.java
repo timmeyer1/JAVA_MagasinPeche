@@ -30,6 +30,13 @@ public class ProduitController {
         return "produits/liste_produits"; // Chemin vers le template
     }
 
+    @GetMapping("/")
+    public String getAllProduits2(Model model) {
+        List<Produit> produits = produitService.getAllProduits();
+        model.addAttribute("produits", produits);
+        return "index"; // Chemin vers le template
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Produit> getProduitById(@PathVariable Long id) {
         Produit produit = produitService.getProduitById(id);
