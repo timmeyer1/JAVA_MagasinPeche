@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>Liste des Produits</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" href="/css/header.css">
 </head>
 <body>
-<div th:replace="header :: header"></div>
+<div th:replace="_parts/_header :: header"></div>
 <h1>Liste des Produits</h1>
 <a href="/produits/ajouter">Ajouter un nouveau produit</a>
 <div class="produits-container">

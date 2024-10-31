@@ -31,8 +31,8 @@
                 <label for="quantite" class="input_label">Quantité</label>
             </div>
             <div class="input">
-                <input type="file" name="imageFile" id="imageFile" class="custom-file-upload" required/>
-                <label for="imageFile">Choisir un fichier</label>
+                <input type="file" name="imageFile" id="imageFile" class="input_field_file" required/>
+                <label for="imageFile" class="custom-file-upload">Choisir un fichier</label>
             </div>
             <button type="submit" class="card_button">Ajouter</button>
         </form>

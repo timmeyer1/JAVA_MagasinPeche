@@ -3,9 +3,10 @@
 <head>
     <title>Profil Client</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" href="/css/header.css">
 </head>
 <body>
-<div th:replace="header :: header"></div>
+<div th:replace="_parts/_header :: header"></div>
 <h2>Bienvenue, <span th:text="${#authentication.name}"></span> !</h2>
 <p>Page de profil pour l'utilisateur connecté.</p>
 

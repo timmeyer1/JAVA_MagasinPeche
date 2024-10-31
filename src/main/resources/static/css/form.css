@@ -1,0 +1,194 @@
+/* Importation des polices */
+@import url("https://fonts.googleapis.com/css?family=Oswald|Roboto");
+
+/* Définition des couleurs */
+:root {
+  --color: rgb(27 30 215);
+  --color-secondary: #0b94e9;
+  --bg-color: #d5eafc;
+  --text-color: #515a6e;
+}
+
+/* Animation du bouton */
+@keyframes btn {
+  0%, 100% { transform: scale(1); }
+  70% { transform: scale(1); }
+  80% { transform: scale(1.04); }
+}
+
+/* Animation du poisson */
+@keyframes fish {
+  0%, 70% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+a {
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+a:hover {
+  color: var(--color);
+}
+
+/* Styles du poisson */
+.fish, .fish-shadow {
+  width: 640px;
+  height: auto;
+  position: absolute;
+  top: -145px; /* Ajustez cette valeur pour le positionnement */
+  left: -177px; /* Ajustez cette valeur pour le positionnement */
+  animation: fish 3s forwards ease-in-out;
+  z-index: 5; /* Assurez-vous que le poisson est au-dessus */
+  pointer-events: none; /* Permet l'interaction avec les éléments en dessous */
+}
+
+.fish path {
+  fill: #fff;
+}
+
+/* Ombre du poisson */
+.fish-shadow {
+  opacity: 0.2;
+  filter: blur(10px);
+  top: -125px; /* Ajustez cette valeur pour le positionnement */
+  left: -157px; /* Ajustez cette valeur pour le positionnement */
+  z-index: 4; /* Assurez-vous que l'ombre est au-dessus du fond */
+  pointer-events: none; /* Permet l'interaction avec les éléments en dessous */
+}
+
+/* Container de la carte */
+.container {
+  position: relative;
+  background-color: #fafafe;
+  border-radius: 10px;
+  margin: 40px;
+  padding: 25px 20px 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  width: 320px;
+  box-sizing: border-box;
+  z-index: 1; /* Assurez-vous que la carte est derrière le poisson */
+}
+
+/* Carte */
+.card {
+  position: relative;
+  z-index: 2; /* La carte est au-dessus du container mais derrière le poisson */
+}
+
+.card_title {
+  font-size: 24px;
+  margin: 0;
+}
+
+.card_button {
+  border-radius: 4px;
+  border: none;
+  width: 100%;
+  padding: 0 15px;
+  font-size: 18px;
+  line-height: 36px;
+  font-weight: 500;
+  margin: 25px 0 10px;
+  color: #fff;
+  background: linear-gradient(var(--color-secondary), var(--color));
+  box-shadow: 0 2px 12px -3px var(--color);
+  animation: btn 6.0s 3s infinite ease-in-out;
+  transition: all 0.3s;
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.card_button:hover {
+  opacity: 1;
+  box-shadow: 0 2px 2px -3px var(--color);
+}
+
+/* Styles des champs de saisie */
+.input {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+  padding-top: 10px;
+}
+
+.input_label {
+  color: #8597a3;
+  position: absolute;
+  top: 20px;
+  transition: all 0.3s;
+}
+
+.input_field {
+  border: none;
+  background-color: transparent;
+  border-bottom: 2px solid #eee;
+  font-size: 14px;
+  line-height: 30px;
+  padding: 0;
+  transition: border-color 0.3s;
+}
+
+.input_field:focus,
+.input_field:valid {
+  outline: none;
+  border-bottom-color: #665856;
+}
+
+.input_field:focus + .input_label,
+.input_field:valid + .input_label {
+  color: #665856;
+  transform: translateY(-25px);
+}
+
+.input_eye {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 36px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input_eye svg {
+  width: 24px;
+  height: auto;
+  stroke: #8597a3;
+}
+
+.link {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 3;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #167edf; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    border-radius: 5px; /* Coins arrondis */
+    transition: background-color 0.3s; /* Effet de transition */
+}
+
+.custom-file-upload:hover {
+    background-color: #0e5faa; /* Couleur de fond au survol */
+}
