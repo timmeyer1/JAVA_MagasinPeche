@@ -14,11 +14,11 @@ public class ProduitService {
     private ProduitRepository produitRepository;
 
     public List<Produit> getAllProduits() {
-        return produitRepository.findAll();
+        return produitRepository.findAllByOrderByDateCreationDesc();
     }
 
     public List<Produit> getDerniersProduits() {
-        return produitRepository.findAllByOrderByDateCreationDesc();
+        return produitRepository.findTop3AllByOrderByDateCreationDesc();
     }
 
     public Produit getProduitById(Long id) {

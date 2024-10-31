@@ -25,7 +25,7 @@ public class ProduitController {
 
     @GetMapping
     public String getAllProduits(Model model) {
-        List<Produit> produits = produitService.getAllProduits();
+        List<Produit> produits = produitService.getAllProduits(); // Appel de la méthode pour obtenir tous les produits triés
         model.addAttribute("produits", produits);
         return "produits/liste_produits"; // Chemin vers le template
     }
