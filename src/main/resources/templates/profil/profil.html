@@ -33,7 +33,28 @@
     <div class="profil-content">
         <section id="infos" class="content-section">
             <h2 class="profil-titre">Mes infos</h2>
-            <p>Informations personnelles de l'utilisateur...</p>
+            <div class="profil-content-info-cards">
+                <div class="profil-content-info-card">
+                    <h3>Prénom</h3>
+                    <p th:text="${client.prenom}"></p>
+                </div>
+                <div class="profil-content-info-card">
+                    <h3>Nom</h3>
+                    <p th:text="${client.nom}"></p>
+                </div>
+                <div class="profil-content-info-card">
+                    <h3>Téléphone</h3>
+                    <p th:text="${client.telephone}"></p>
+                </div>
+                <div class="profil-content-info-card">
+                    <h3>Email</h3>
+                    <p th:text="${client.email}"></p>
+                </div>
+                <div class="profil-content-info-card">
+                    <h3>Adresse</h3>
+                    <p th:text="${client.adresse}"></p>
+                </div>
+            </div>
         </section>
         <section id="produits" class="content-section" style="display: none;">
             <h2 class="profil-titre">Mes produits</h2>
