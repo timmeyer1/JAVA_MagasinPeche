@@ -1,6 +1,7 @@
 package com.magasinpeche.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,17 +17,13 @@ public class Produit {
     private String description;
     private Double prix;
     private Integer quantite;
-
-    @Enumerated(EnumType.STRING)  // Utilisation de l'énumération
-    private Categorie categorie;
-
     private String imageUrl;
 
     // Constructeurs
     public Produit() {
     }
 
-    public Produit(String nom, String description, Double prix, Integer quantite, Categorie categorie, String imageUrl) {
+    public Produit(String nom, String description, Double prix, Integer quantite, String categorie, String imageUrl) {
         this.nom = nom;
         this.description = description;
         this.prix = prix;
@@ -43,6 +40,7 @@ public class Produit {
         this.dateCreation = dateCreation;
     }
 
+    // Getters et Setters
     public Long getId() {
         return id;
     }
@@ -83,11 +81,11 @@ public class Produit {
         this.quantite = quantite;
     }
 
-    public Categorie getCategorie() {
+    public String getCategorie() {
         return categorie;
     }
 
-    public void setCategorie(Categorie categorie) {
+    public void setCategorie(String categorie) {
         this.categorie = categorie;
     }
 

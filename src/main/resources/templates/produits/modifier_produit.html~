@@ -10,31 +10,59 @@
 <div class="container">
     <div class="card">
         <h1 class="card_title">Nouveau produit</h1>
-        <form class="card_form" th:action="@{/produits/ajouter}" method="post" th:object="${produit}"
-              enctype="multipart/form-data">
+        <form class="card_form" action="#" th:action="@{/produits/{id}(id=${produit.id})}" method="post"
+              th:object="${produit}" enctype="multipart/form-data">
+
             <div class="input">
                 <input type="text" th:field="*{nom}" id="nom" class="input_field" required/>
-                <label for="prix" class="input_label">Nom</label>
+                <label for="nom" class="input_label">Nom</label>
             </div>
 
             <div class="input">
                 <input type="number" th:field="*{prix}" id="prix" class="input_field" required/>
-                <label class="input_label">Prix</label>
+                <label for="prix" class="input_label">Prix</label>
             </div>
 
             <div class="input">
                 <input type="text" th:field="*{description}" id="description" class="input_field" required/>
                 <label for="description" class="input_label">Description</label>
             </div>
+
             <div class="input">
                 <input type="number" th:field="*{quantite}" id="quantite" class="input_field" required/>
                 <label for="quantite" class="input_label">Quantité</label>
             </div>
-            <div class="input">
-                <input type="file" name="imageFile" id="imageFile" class="input_field_file" required/>
-                <label for="imageFile" class="custom-file-upload">Choisir un fichier</label>
+
+            <div>
+                <label>Image actuelle:</label>
+                <img th:src="@{${produit.imageUrl}}" alt="Image du produit" style="width: 100px;"/>
             </div>
-            <button type="submit" class="card_button">Ajouter</button>
+
+            <div>
+                <label for="imageFile">Nouvelle image (optionnel):</label>
+                <input type="file" id="imageFile" name="imageFile" class="custom-file-upload"/>
+            </div>
+
+            <!-- Sélection des catégories -->
+            <div class="input">
+                <label for="categorie" class="input_label">Catégorie</label>
+                <select id="categorie" th:field="*{categorie}" class="input_field">
+                    <option value="CANNE_A_PECHE">Canne à pêche</option>
+                    <option value="MOULINET">Moulinet</option>
+                    <option value="FIL_DE_PECHE">Fil de pêche</option>
+                    <option value="HAMECONS">Hameçons</option>
+                    <option value="EPUISETTE">Épuisette</option>
+                    <option value="APPATS">Appâts</option>
+                    <option value="CHAPEAU">Chapeau</option>
+                    <option value="VETEMENT">Vêtement</option>
+                    <option value="GANTS">Gants</option>
+                    <option value="SEAU">Seau</option>
+                    <option value="COUTEAU">Couteau</option>
+                    </option>
+                </select>
+            </div>
+
+            <button type="submit" class="card_button">Modifier</button>
         </form>
         <div class="card_info">
             <p><a href="/produits">Retour à la liste des produits</a></p>
@@ -270,3 +298,4 @@
 
 
 </html>
+

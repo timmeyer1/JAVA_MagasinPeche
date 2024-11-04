@@ -1,5 +1,6 @@
 package com.magasinpeche.controller;
 
+import com.magasinpeche.model.Categorie;
 import com.magasinpeche.model.Produit;
 import com.magasinpeche.service.ProduitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +79,7 @@ public class ProduitController {
         Produit produit = produitService.getProduitById(id);
         if (produit != null) {
             model.addAttribute("produit", produit);
+            model.addAttribute("categorie", Categorie.values());
             return "produits/modifier_produit"; // Chemin vers le template
         }
         return "redirect:/produits"; // Redirige vers la liste si le produit n'existe pas
