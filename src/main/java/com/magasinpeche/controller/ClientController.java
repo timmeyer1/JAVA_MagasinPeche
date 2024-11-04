@@ -3,15 +3,14 @@ package com.magasinpeche.controller;
 import com.magasinpeche.model.Client;
 import com.magasinpeche.service.ClientService;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.security.Principal;
 
 @Controller
 public class ClientController {
@@ -46,8 +45,13 @@ public class ClientController {
 
     // page de profil
     @GetMapping("/profil")
-    public String profil() {
-        return "profil";
+    public String profil(Model model, Principal principal) {
+        if (principal != null) {
+            String email = principal.getName();
+            Client client = clientService.findByEmail(email).orElse(null);
+            model.addAttribute("client", client);
+        }
+        return "profil/profil";
     }
 
     // page de logout

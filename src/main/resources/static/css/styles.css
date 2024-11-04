@@ -15,6 +15,8 @@ main {
     font-family: 'Kanit', sans-serif;
 }
 
+/* #### PAGE ACCUEIL #### */
+
 /* Structure de base */
 .hp-box {
     display: flex;
@@ -148,6 +150,96 @@ main {
 }
 
 
+/* #### PAGE PROFIL #### */
+.profil-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 20px auto;
+    width: 90%;
+    gap: 20px;
+}
+
+/* Style de la section des produits */
+.profil-nav {
+    border: solid 2px rgb(223, 223, 223);
+    border-radius: 10px;
+    padding: 20px;
+    width: 20%;
+    box-shadow: 0px 4px 10px rgba(23, 26, 71, 0.2);
+}
+
+.profil-content {
+    border: solid 2px rgb(223, 223, 223);
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    box-shadow: 0px 4px 10px rgba(23, 26, 71, 0.2);
+}
+
+.profil-titre {
+    text-align: center;
+}
+
+/* Barre de navigation latérale */
+.profil-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.profil-sidebar li {
+    margin: 15px 0;
+}
+
+/* Liens dans la barre latérale */
+.profil-sidebar a {
+    color: black;
+    text-decoration: none;
+    font-size: 1.1em;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+/* Survol des liens */
+.profil-sidebar a:hover {
+    background-color: #d6dee6;
+}
+
+/* Style pour l'onglet actif */
+.profil-sidebar a.active {
+    background-color: #d6dee6;
+    color: #333;
+    box-shadow: 0px 4px 10px rgba(47, 54, 155, 0.2);
+}
+
+
+
+
+/* Formulaire de déconnexion */
+.logout-form {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Bouton de déconnexion */
+.logout-button {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #e63946;
+    /* Couleur rouge pour attirer l'attention */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+    background-color: #c5303a;
+}
 
 
 

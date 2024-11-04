@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Profil Client</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" href="/css/header.css">
+</head>
+<body>
+<div th:replace="_parts/_header :: header"></div>
+<div class="profil-box">
+    <div class="profil-nav">
+        <div>
+            <h2 class="profil-titre"><span th:text="${client.prenom}"></span></h2>
+        </div>
+
+        <!-- Barre de navigation latérale -->
+        <nav class="profil-sidebar">
+            <ul>
+                <li><a href="#" class="active" data-section="infos">Mes infos</a></li>
+                <li><a href="#" data-section="produits">Mes produits</a></li>
+                <li><a href="#" data-section="concours">Mes concours</a></li>
+                <li><a href="#" data-section="permis">Mon permis</a></li>
+            </ul>
+        </nav>
+
+        <!-- Bouton de déconnexion -->
+        <form th:action="@{/logout}" method="post" class="logout-form">
+            <button type="submit" class="logout-button">Déconnexion</button>
+        </form>
+    </div>
+
+    <!-- Contenu principal de chaque section -->
+    <div class="profil-content">
+        <section id="infos" class="content-section">
+            <h2 class="profil-titre">Mes infos</h2>
+            <p>Informations personnelles de l'utilisateur...</p>
+        </section>
+        <section id="produits" class="content-section" style="display: none;">
+            <h2 class="profil-titre">Mes produits</h2>
+            <p>Produits ajoutés ou achetés par l'utilisateur...</p>
+        </section>
+        <section id="concours" class="content-section" style="display: none;">
+            <h2 class="profil-titre">Mes concours</h2>
+            <p>Concours auxquels l'utilisateur a participé...</p>
+        </section>
+        <section id="permis" class="content-section" style="display: none;">
+            <h2 class="profil-titre">Mon permis</h2>
+            <p>Informations sur le permis de l'utilisateur...</p>
+        </section>
+    </div>
+</div>
+
+<script src="/js/script.js"></script>
+</body>
+
+</html>
