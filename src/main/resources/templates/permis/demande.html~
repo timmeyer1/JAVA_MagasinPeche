@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Demande de Permis de Pêche</title>
+</head>
+<body>
+<h1>Demande de Permis de Pêche</h1>
+<form action="#" th:action="@{/permis/demande}" th:object="${permis}" method="post">
+    <!-- Modification ici pour passer le clientId comme paramètre attendu par le contrôleur -->
+    <input type="hidden" name="clientId" th:value="${clientId}"/>
+
+    <label for="commentaires">Commentaires:</label>
+    <textarea id="commentaires" th:field="*{commentaires}"></textarea>
+    <button type="submit">Soumettre la Demande</button>
+</form>
+<a href="/produits">Retour</a>
+</body>
+</html>

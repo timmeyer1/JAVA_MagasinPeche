@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Demandes de Permis</title>
+</head>
+<body>
+<h1>Liste des Demandes de Permis de Pêche</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Client</th>
+        <th>Date de Demande</th>
+        <th>Statut</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="demande : ${demandes}">
+        <td th:text="${demande.client.nom} + ' ' + ${demande.client.prenom}"></td>
+        <td th:text="${#dates.format(demande.dateDemande, 'dd/MM/yyyy')}"></td>
+        <td th:text="${demande.statut}"></td>
+        <td>
+            <form action="#" th:action="@{/permis/traiter/{id}(id=${demande.id})}" method="post">
+                <select name="statut">
+                    <option value="APPROUVE">Approuvé</option>
+                    <option value="REJETÉ">Rejeté</option>
+                </select>
+                <button type="submit">Traiter</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

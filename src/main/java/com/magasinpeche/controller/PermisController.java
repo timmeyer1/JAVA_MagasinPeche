@@ -1,52 +1,52 @@
 package com.magasinpeche.controller;
 
+import com.magasinpeche.model.Client;
 import com.magasinpeche.model.Permis;
+import com.magasinpeche.model.StatutPermis;
+import com.magasinpeche.service.ClientService;
 import com.magasinpeche.service.PermisService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.security.Principal;
 
-@RestController
+@Controller
 @RequestMapping("/permis")
 public class PermisController {
     @Autowired
     private PermisService permisService;
 
-    @GetMapping
-    public List<Permis> getAllPermis() {
-        return permisService.getAllPermis();
+    @Autowired
+    private ClientService clientService;
+
+    @GetMapping("/demande")
+    public String demandePermisForm(Model model, Principal principal) {
+        Client client = clientService.findByEmail(principal.getName()).orElse(null);
+        model.addAttribute("permis", new Permis());
+        model.addAttribute("clientId", client.getId());
+        return "permis/demande"; // Page Thymeleaf pour le formulaire
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Permis> getPermisById(@PathVariable Long id) {
-        Permis permis = permisService.getPermisById(id);
-        if (permis != null) {
-            return ResponseEntity.ok(permis);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    @PostMapping("/demande")
+    public String soumettreDemande(@ModelAttribute Permis permis, @RequestParam Long clientId) {
+        Client client = clientService.findById(clientId).orElse(null);
+        permis.setClient(client);
+        permisService.save(permis);
+        return "redirect:/permis/demandes"; // Redirige vers la liste des demandes
     }
 
-    @PostMapping
-    public Permis createPermis(@RequestBody Permis permis) {
-        return permisService.createPermis(permis);
+    @GetMapping("/liste")
+    public String listDemandes(Model model) {
+        model.addAttribute("demandes", permisService.findAll());
+        return "permis/list"; // Page Thymeleaf pour afficher la liste des demandes
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Permis> updatePermis(@PathVariable Long id, @RequestBody Permis permisDetails) {
-        Permis updatedPermis = permisService.updatePermis(id, permisDetails);
-        if (updatedPermis != null) {
-            return ResponseEntity.ok(updatedPermis);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePermis(@PathVariable Long id) {
-        permisService.deletePermis(id);
-        return ResponseEntity.noContent().build();
+    @PostMapping("/traiter/{id}")
+    public String traiterDemande(@PathVariable Long id, @RequestParam StatutPermis statut) {
+        permisService.updateStatut(id, statut);
+        // Appel à une méthode pour envoyer une notification par email
+        return "redirect:/permis/demandes"; // Redirige vers la liste des demandes
     }
 }

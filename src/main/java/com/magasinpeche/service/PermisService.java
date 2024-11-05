@@ -1,10 +1,13 @@
 package com.magasinpeche.service;
 
+import com.magasinpeche.model.Client;
 import com.magasinpeche.model.Permis;
+import com.magasinpeche.model.StatutPermis;
 import com.magasinpeche.repository.PermisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -12,30 +15,26 @@ public class PermisService {
     @Autowired
     private PermisRepository permisRepository;
 
-    public List<Permis> getAllPermis() {
+    public List<Permis> findAll() {
         return permisRepository.findAll();
     }
 
-    public Permis getPermisById(Long id) {
+    public Permis findById(Long id) {
         return permisRepository.findById(id).orElse(null);
     }
 
-    public Permis createPermis(Permis permis) {
+    public Permis save(Permis permis) {
+        permis.setDateDemande(new Date());
+        permis.setStatut(StatutPermis.EN_ATTENTE);
         return permisRepository.save(permis);
     }
 
-    public Permis updatePermis(Long id, Permis permisDetails) {
-        Permis permis = permisRepository.findById(id).orElse(null);
+    public void updateStatut(Long id, StatutPermis statut) {
+        Permis permis = findById(id);
         if (permis != null) {
-            permis.setClient(permisDetails.getClient());
-            permis.setDateDemande(permisDetails.getDateDemande());
-            permis.setStatut(permisDetails.getStatut());
-            return permisRepository.save(permis);
+            permis.setStatut(statut);
+            permisRepository.save(permis);
+            // Appel à l'envoi de l'email
         }
-        return null;
-    }
-
-    public void deletePermis(Long id) {
-        permisRepository.deleteById(id);
     }
 }
