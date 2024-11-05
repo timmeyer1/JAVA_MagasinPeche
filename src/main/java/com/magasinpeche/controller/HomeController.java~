@@ -16,8 +16,8 @@ public class HomeController {
 
     @GetMapping("/")
     public String afficherAccueil(Model model) {
-        List<Produit> produits = produitService.getAllProduits(); // on récupère tous les produits
-        List<Produit> produitsLimites = produits.stream().limit(3).toList(); // on limite les produits récupérés à 3 produits
+        List<Produit> derniersProduits = produitService.getDerniersProduits(); // on récupère tous les derniers produits
+        List<Produit> produitsLimites = derniersProduits.stream().limit(3).toList(); // on limite les produits récupérés à 3 produits
 
         model.addAttribute("produits", produitsLimites);
         return "home";

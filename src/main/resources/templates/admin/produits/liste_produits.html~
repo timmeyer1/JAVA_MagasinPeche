@@ -9,7 +9,7 @@
 <body>
 <div th:replace="_parts/_header :: header"></div>
 <h1>Liste des Produits</h1>
-<a href="/produits/ajouter">Ajouter un nouveau produit</a>
+<a href="admin/produits/ajouter">Ajouter un nouveau produit</a>
 <div class="produits-container">
     <div th:each="produit : ${produits}" class="produit-box">
         <div class="produit-image">

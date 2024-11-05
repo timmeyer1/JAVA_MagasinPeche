@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Produits</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" href="/css/header.css">
+</head>
+<body>
+<div th:replace="_parts/_header :: header"></div>
+<h1>Liste des Produits</h1>
+<a th:href="@{/admin/produits/ajouter}">Ajouter un nouveau produit</a>
+<div class="produits-container">
+    <div th:each="produit : ${produits}" class="produit-box">
+        <div class="produit-image">
+            <img th:src="${produit.imageUrl}" alt="Image de ${produit.nom}"/>
+        </div>
+        <div class="produit-details">
+            <h2 th:text="${produit.nom}"></h2>
+            <p th:text="${produit.description}"></p>
+            <div class="produit-footer">
+                <span class="produit-prix" th:text="${produit.prix} + ' €'"></span>
+                <span class="produit-stock" th:text="'Stock: ' + ${produit.quantite}"></span>
+                <a th:href="@{/admin/produits/modifier/{id}(id=${produit.id})}" class="modifier-link">Modifier</a>
+                <a th:href="@{/admin/produits/supprimer/{id}(id=${produit.id})}" class="supprimer-link">Supprimer</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

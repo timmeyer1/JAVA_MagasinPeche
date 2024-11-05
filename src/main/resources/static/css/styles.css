@@ -15,7 +15,7 @@ main {
     font-family: 'Kanit', sans-serif;
 }
 
-/* #### PAGE ACCUEIL #### */
+/* -------------------------------- PAGE ACCUEIL -------------------------------- */
 
 /* Structure de base */
 .hp-box {
@@ -51,20 +51,9 @@ main {
     margin: -20px;
 }
 
-.hp-titre a {
-    text-align: center;
-    cursor: pointer;
-    text-decoration: none;
-    color: black;
-}
-
-.hp-titre a:hover {
-    color: #052644;
-    transform: translateY(-5px);
-}
-
 .hp-titre h2 {
     transition: transform 0.3s ease;
+    cursor: default;
 }
 
 .hp-titre h2:hover {
@@ -72,7 +61,7 @@ main {
 }
 
 
-/* #### PAGE PRODUITS #### */
+/* -------------------------------- PAGE PRODUITS -------------------------------- */
 .produits-container {
     display: flex;
     flex-direction: column; /* Orientation en colonne */
@@ -118,6 +107,15 @@ main {
     justify-content: space-between; /* Espacement entre les éléments */
 }
 
+.produit-details h2 {
+    color: #333; /* Couleur du titre */
+}
+
+.produit-details p {
+    color: #666; /* Couleur du texte */
+
+}
+
 .produit-footer {
     display: flex;
     justify-content: space-between; /* Espacement entre les éléments du footer */
@@ -150,7 +148,7 @@ main {
 }
 
 
-/* #### PAGE PROFIL #### */
+/* -------------------------------- PAGE PROFIL -------------------------------- */
 .profil-box {
     display: flex;
     justify-content: space-between;
@@ -248,7 +246,7 @@ main {
 }
 
 
-/* ---- Boutons ---- */
+/* -------------------------------- Boutons -------------------------------- */
 /* Bouton d'action */
 .action-button {
     padding: 6px 12px;

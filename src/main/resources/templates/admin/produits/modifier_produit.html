@@ -10,7 +10,7 @@
 <div class="container">
     <div class="card">
         <h1 class="card_title">Nouveau produit</h1>
-        <form class="card_form" action="#" th:action="@{/produits/{id}(id=${produit.id})}" method="post"
+        <form class="card_form" action="#" th:action="@{/admin/produits/{id}(id=${produit.id})}" method="post"
               th:object="${produit}" enctype="multipart/form-data">
 
             <div class="input">
@@ -57,15 +57,13 @@
                     <option value="GANTS">Gants</option>
                     <option value="SEAU">Seau</option>
                     <option value="COUTEAU">Couteau</option>
-                    </option>
                 </select>
-                <label for="categorie" class="input_label">Catégorie</label>
             </div>
 
             <button type="submit" class="card_button">Modifier</button>
         </form>
         <div class="card_info">
-            <p><a href="/produits">Retour à la liste des produits</a></p>
+            <p><a th:href="@{/admin/produits}">Retour à la liste des produits</a></p>
         </div>
     </div>
     <div class="fish-shadow-con">

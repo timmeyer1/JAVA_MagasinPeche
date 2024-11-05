@@ -10,7 +10,7 @@
 <div class="container">
     <div class="card">
         <h1 class="card_title">Nouveau produit</h1>
-        <form class="card_form" th:action="@{/produits/ajouter}" method="post" th:object="${produit}"
+        <form class="card_form" th:action="@{/admin/produits/ajouter}" method="post" th:object="${produit}"
               enctype="multipart/form-data">
             <div class="input">
                 <input type="text" th:field="*{nom}" id="nom" class="input_field" required/>
@@ -35,7 +35,7 @@
                 <label for="imageFile">Choisir un fichier</label>
             </div>
             <div class="input">
-                <select id="categorie" name="categorie">
+                <select id="categorie" name="categorie" required>
                     <option value="CANNE_A_PECHE">Canne à pêche</option>
                     <option value="MOULINET">Moulinet</option>
                     <option value="FIL_DE_PECHE">Fil de pêche</option>
@@ -48,12 +48,11 @@
                     <option value="SEAU">Seau</option>
                     <option value="COUTEAU">Couteau</option>
                 </select>
-                <label for="categorie" class="input_label">Catégorie</label>
             </div>
             <button type="submit" class="card_button">Ajouter</button>
         </form>
         <div class="card_info">
-            <p><a href="/produits">Retour à la liste des produits</a></p>
+            <p><a th:href="@{/admin/produits}">Retour à la liste des produits</a></p>
         </div>
     </div>
     <div class="fish-shadow-con">

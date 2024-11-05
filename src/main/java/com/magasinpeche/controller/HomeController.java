@@ -19,7 +19,7 @@ public class HomeController {
         List<Produit> derniersProduits = produitService.getDerniersProduits(); // on récupère tous les derniers produits
         List<Produit> produitsLimites = derniersProduits.stream().limit(3).toList(); // on limite les produits récupérés à 3 produits
 
-        model.addAttribute("produits", produitsLimites);
+        model.addAttribute("produits", derniersProduits);
         return "home";
     }
 }

@@ -39,7 +39,7 @@ public class PermisController {
     }
 
 
-    // ---------------------------- ADMIN PAGE ----------------------------
+    // /liste et /traiter dans #AdminController
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/liste")
