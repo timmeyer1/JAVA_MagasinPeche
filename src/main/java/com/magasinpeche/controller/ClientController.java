@@ -1,6 +1,7 @@
 package com.magasinpeche.controller;
 
 import com.magasinpeche.model.Client;
+import com.magasinpeche.model.Permis;
 import com.magasinpeche.service.ClientService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,9 +51,14 @@ public class ClientController {
             String email = principal.getName();
             Client client = clientService.findByEmail(email).orElse(null);
             model.addAttribute("client", client);
+
+            // Récupération du permis pour le client actuel
+            Permis permis = (client != null) ? client.getPermis() : null;
+            model.addAttribute("permis", permis); // Ajouter le permis au modèle
         }
         return "profil/profil";
     }
+
 
     // page de logout
     @GetMapping("/logout")

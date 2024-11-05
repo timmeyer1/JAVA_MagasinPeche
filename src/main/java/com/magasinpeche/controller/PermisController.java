@@ -34,7 +34,7 @@ public class PermisController {
         Client client = clientService.findById(clientId).orElse(null);
         permis.setClient(client);
         permisService.save(permis);
-        return "redirect:/permis/demandes"; // Redirige vers la liste des demandes
+        return "redirect:/profil"; // Redirige vers la liste des demandes
     }
 
     @GetMapping("/liste")
@@ -47,6 +47,6 @@ public class PermisController {
     public String traiterDemande(@PathVariable Long id, @RequestParam StatutPermis statut) {
         permisService.updateStatut(id, statut);
         // Appel à une méthode pour envoyer une notification par email
-        return "redirect:/permis/demandes"; // Redirige vers la liste des demandes
+        return "redirect:/permis/liste"; // Redirige vers la liste des demandes
     }
 }

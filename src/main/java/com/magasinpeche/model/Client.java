@@ -1,9 +1,6 @@
 package com.magasinpeche.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Client {
@@ -19,8 +16,10 @@ public class Client {
     private String adresse;
     private String telephone;
 
-    // Getters et setters
+    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
+    private Permis permis;
 
+    // Getters et setters
 
     public Long getId() {
         return id;
@@ -76,5 +75,15 @@ public class Client {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+
+    // Getter et setter pour permis
+    public Permis getPermis() {
+        return permis;
+    }
+
+    public void setPermis(Permis permis) {
+        this.permis = permis;
     }
 }

@@ -66,7 +66,18 @@
         </section>
         <section id="permis" class="content-section" style="display: none;">
             <h2 class="profil-titre">Mon permis</h2>
-            <p>Informations sur le permis de l'utilisateur...</p>
+
+            <div th:if="${permis != null}">
+                <h3>Statut du permis :</h3>
+                <p th:text="${permis.statut}">Statut du permis</p>
+                <h3>Date de demande :</h3>
+                <p th:text="${#dates.format(permis.dateDemande, 'dd-MM-yyyy')}">Date de demande</p>
+            </div>
+
+            <div th:if="${permis == null}">
+                <p>Vous n'avez pas encore de permis.
+                    <br> Faites votre demande <a href="/permis/demande">ici</a></p>
+            </div>
         </section>
     </div>
 </div>
