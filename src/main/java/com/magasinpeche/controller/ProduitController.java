@@ -16,6 +16,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+
+// ---------------------------- ADMIN PAGE ----------------------------
+
+
 @Controller
 @RequestMapping("/produits")
 public class ProduitController {

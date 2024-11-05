@@ -20,6 +20,7 @@
                 <li><a href="#" data-section="produits">Mes produits</a></li>
                 <li><a href="#" data-section="concours">Mes concours</a></li>
                 <li><a href="#" data-section="permis">Permis de pêche</a></li>
+                <li><a href="#" data-section="administration">Administration</a></li>
             </ul>
         </nav>
 
@@ -84,6 +85,15 @@
             <div th:if="${permis == null}">
                 <p>Vous n'avez pas encore de permis.
                     <br> Faites votre demande <a href="/permis/demande">ici</a></p>
+            </div>
+        </section>
+        <section id="administration" class="content-section" style="display: none;">
+            <h2 class="profil-titre">Centre de contrôle</h2>
+            <div class="profil-content-info-cards">
+                <div class="profil-content-info-card">
+                    <h3>Demandes de permis</h3>
+                    <a class="action-button" th:href="@{/permis/liste}">Modifier</a>
+                </div>
             </div>
         </section>
     </div>

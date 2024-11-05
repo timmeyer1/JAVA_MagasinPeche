@@ -38,6 +38,9 @@ public class PermisController {
         return "redirect:/profil"; // Redirige vers la liste des demandes
     }
 
+
+    // ---------------------------- ADMIN PAGE ----------------------------
+
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/liste")
     public String listDemandes(Model model) {
