@@ -37,4 +37,8 @@ public class PermisService {
             // Appel à l'envoi de l'email
         }
     }
+
+    public List<Permis> findAllOrderedByDate() {
+        return permisRepository.findAllByOrderByDateDemandeDesc();
+    }
 }

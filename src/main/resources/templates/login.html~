@@ -18,6 +18,8 @@
                 <input type="password" name="password" class="input_field" required/>
                 <label class="input_label">Mot de passe</label>
 
+                <div th:if="${param.error}" style="color:red;">Erreur : Email ou mot de passe invalide.</div>
+
                 <span class="input_eye">
                     <svg viewBox="0 0 146 74" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M143 37C143 45.4902 136.139 53.9606 123.263 60.487C110.554 66.9283 92.7879 71 73 71C53.2121 71 35.446 66.9283 22.7375 60.487C9.86096 53.9606 3 45.4902 3 37C3 28.5098 9.86096 20.0394 22.7375 13.513C35.446 7.07167 53.2121 3 73 3C92.7879 3 110.554 7.07167 123.263 13.513C136.139 20.0394 143 28.5098 143 37Z"
@@ -27,7 +29,6 @@
                 </span>
             </div>
             <button type="submit" class="card_button">Se connecter</button>
-            <div th:if="${param.error}" style="color:red;">Erreur : Email ou mot de passe invalide.</div>
         </form>
         <div class="card_info">
             <p>Pas enregistré? <a th:href="@{/register}">Créer un compte</a></p>
@@ -144,7 +145,7 @@
 
         <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
             <path d="M177.367 337.568L182.709 357.739C198.517 417.421 249.748 460.995 311.193 467.019L421.508 477.834C478.237 483.396 532.831 454.649 560.346 404.729C607.09 319.923 557.549 214.182 462.47 195.822L375.079 178.946C368.369 177.651 361.766 175.854 355.324 173.572C251.651 136.837 149.205 231.245 177.367 337.568Z"
-                  style="display: none;" id="Line"/>
+                   style="display: none;" id="Line"/>
 
             <g xmlns="http://www.w3.org/2000/svg" id="Artboard" stroke="none" stroke-width="1" fill="none"
                fill-rule="evenodd">

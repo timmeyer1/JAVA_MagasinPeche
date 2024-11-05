@@ -19,7 +19,7 @@
                 <li><a href="#" class="active" data-section="infos">Mes infos</a></li>
                 <li><a href="#" data-section="produits">Mes produits</a></li>
                 <li><a href="#" data-section="concours">Mes concours</a></li>
-                <li><a href="#" data-section="permis">Mon permis</a></li>
+                <li><a href="#" data-section="permis">Permis de pêche</a></li>
             </ul>
         </nav>
 
@@ -54,26 +54,33 @@
                     <h3>Adresse</h3>
                     <p th:text="${client.adresse}"></p>
                 </div>
+
+                <!-- Section pour afficher le rôle ADMIN -->
+                <div class="profil-content-info-card" th:if="${client.role == T(com.magasinpeche.model.Role).ADMIN}">
+                    <h3>Rôle</h3>
+                    <p>Vous avez le rôle <strong>ADMIN</strong>.</p>
+                </div>
             </div>
         </section>
+
         <section id="produits" class="content-section" style="display: none;">
             <h2 class="profil-titre">Mes produits</h2>
             <p>Produits ajoutés ou achetés par l'utilisateur...</p>
         </section>
+
         <section id="concours" class="content-section" style="display: none;">
             <h2 class="profil-titre">Mes concours</h2>
             <p>Concours auxquels l'utilisateur a participé...</p>
         </section>
-        <section id="permis" class="content-section" style="display: none;">
-            <h2 class="profil-titre">Mon permis</h2>
 
+        <section id="permis" class="content-section" style="display: none;">
+            <h2 class="profil-titre">Permis de pêche</h2>
             <div th:if="${permis != null}">
                 <h3>Statut du permis :</h3>
                 <p th:text="${permis.statut}">Statut du permis</p>
                 <h3>Date de demande :</h3>
                 <p th:text="${#dates.format(permis.dateDemande, 'dd-MM-yyyy')}">Date de demande</p>
             </div>
-
             <div th:if="${permis == null}">
                 <p>Vous n'avez pas encore de permis.
                     <br> Faites votre demande <a href="/permis/demande">ici</a></p>
@@ -84,5 +91,4 @@
 
 <script src="/js/script.js"></script>
 </body>
-
 </html>

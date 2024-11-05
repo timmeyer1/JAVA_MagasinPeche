@@ -20,6 +20,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/css/**", "/js/**", "/images/**", "/register", "/login").permitAll() // Autoriser l'accès à tous pour ces pages
+                        .requestMatchers("/permis/liste").hasRole("ADMIN") // Restreindre l'accès à l'admin
                         .anyRequest().authenticated() // Toutes les autres requêtes nécessitent une authentification
                 )
                 .formLogin((form) -> form

@@ -80,7 +80,6 @@ public class Client {
         this.telephone = telephone;
     }
 
-
     // Getter et setter pour role
     public Role getRole() {
         return role;

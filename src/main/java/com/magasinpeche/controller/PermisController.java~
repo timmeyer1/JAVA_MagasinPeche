@@ -41,7 +41,7 @@ public class PermisController {
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/liste")
     public String listDemandes(Model model) {
-        model.addAttribute("demandes", permisService.findAllOrderedByDate());
+        model.addAttribute("demandes", permisService.findAll());
         return "permis/list"; // Page Thymeleaf pour afficher la liste des demandes
     }
 
