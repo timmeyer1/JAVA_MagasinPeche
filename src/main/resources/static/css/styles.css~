@@ -385,9 +385,8 @@ main {
 }
 
 /* Style de l'icône active */
-.icon.active {
-    background-color: #007bff; /* Bleu pour l'icône active */
-    color: white; /* Texte en blanc */
+.icon svg.active {
+    fill: #007bff;
 }
 
 

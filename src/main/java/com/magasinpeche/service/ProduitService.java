@@ -21,6 +21,10 @@ public class ProduitService {
         return produitRepository.findTop3AllByOrderByDateCreationDesc();
     }
 
+    public List<Produit> getProduitsByCategorie(String categorie) {
+        return produitRepository.findByCategorie(categorie);
+    }
+
     public Produit getProduitById(Long id) {
         return produitRepository.findById(id).orElse(null);
     }

@@ -71,32 +71,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // ------------ Filtrer les produits par nom ------------
-document.addEventListener('DOMContentLoaded', function() {
-    // Sélectionner les éléments nécessaires
-    const searchInput = document.getElementById('searchInput');
-    const products = document.querySelectorAll('.produit-box');
-
-    // Fonction pour filtrer les produits par nom
-    function filterProductsByName(query) {
-        products.forEach(product => {
-            const productName = product.querySelector('.produit-details h2').innerText.toLowerCase();
-            if (productName.includes(query.toLowerCase())) {
-                product.style.display = '';  // Afficher le produit si le nom contient la requête
-            } else {
-                product.style.display = 'none';  // Masquer le produit si le nom ne correspond pas
-            }
-        });
-    }
-
-    // Ajouter un événement sur l'input de recherche
-    searchInput.addEventListener('input', function() {
-        const query = searchInput.value;
-        filterProductsByName(query);
-    });
-
-    // Option de réinitialisation (montrer tous les produits)
-    document.querySelector('.search-button').addEventListener('click', function() {
-        searchInput.value = '';  // Réinitialiser la barre de recherche
-        filterProductsByName('');  // Montrer tous les produits
-    });
-});

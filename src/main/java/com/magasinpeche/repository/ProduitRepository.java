@@ -11,4 +11,6 @@ public interface ProduitRepository extends JpaRepository<Produit, Long> {
     List<Produit> findTop3AllByOrderByDateCreationDesc();
 
     List<Produit> findAllByOrderByDateCreationDesc();
+
+    List<Produit> findByCategorie(String categorie);
 }
