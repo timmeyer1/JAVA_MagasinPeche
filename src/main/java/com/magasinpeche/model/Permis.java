@@ -14,7 +14,7 @@ public class Permis {
     private Client client;
 
     @Enumerated(EnumType.STRING)
-    private StatutPermis statut;
+    private Statut statut;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateDemande;
@@ -38,11 +38,11 @@ public class Permis {
         this.client = client;
     }
 
-    public StatutPermis getStatut() {
+    public Statut getStatut() {
         return statut;
     }
 
-    public void setStatut(StatutPermis statut) {
+    public void setStatut(Statut statut) {
         this.statut = statut;
     }
 

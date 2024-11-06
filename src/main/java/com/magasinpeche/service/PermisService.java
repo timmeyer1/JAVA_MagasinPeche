@@ -1,8 +1,7 @@
 package com.magasinpeche.service;
 
-import com.magasinpeche.model.Client;
 import com.magasinpeche.model.Permis;
-import com.magasinpeche.model.StatutPermis;
+import com.magasinpeche.model.Statut;
 import com.magasinpeche.repository.PermisRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,11 +24,11 @@ public class PermisService {
 
     public Permis save(Permis permis) {
         permis.setDateDemande(new Date());
-        permis.setStatut(StatutPermis.EN_ATTENTE);
+        permis.setStatut(Statut.EN_ATTENTE);
         return permisRepository.save(permis);
     }
 
-    public void updateStatut(Long id, StatutPermis statut) {
+    public void updateStatut(Long id, Statut statut) {
         Permis permis = findById(id);
         if (permis != null) {
             permis.setStatut(statut);

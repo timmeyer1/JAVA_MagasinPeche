@@ -2,7 +2,7 @@ package com.magasinpeche.controller;
 
 import com.magasinpeche.model.Client;
 import com.magasinpeche.model.Permis;
-import com.magasinpeche.model.StatutPermis;
+import com.magasinpeche.model.Statut;
 import com.magasinpeche.service.ClientService;
 import com.magasinpeche.service.PermisService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +49,7 @@ public class PermisController {
     }
 
     @PostMapping("/traiter/{id}")
-    public String traiterDemande(@PathVariable Long id, @RequestParam StatutPermis statut) {
+    public String traiterDemande(@PathVariable Long id, @RequestParam Statut statut) {
         permisService.updateStatut(id, statut);
         // Appel à une méthode pour envoyer une notification par email
         return "redirect:/permis/liste"; // Redirige vers la liste des demandes
