@@ -61,6 +61,11 @@ main {
     transform: translateY(-5px);
 }
 
+.hp-titre a {
+    text-decoration: none;
+    color: #333;
+}
+
 
 /* -------------------------------- PAGE PRODUITS -------------------------------- */
 .produits-container {
@@ -385,8 +390,9 @@ main {
 }
 
 /* Style de l'icône active */
-.icon svg.active {
-    fill: #007bff;
+.icon.active {
+    background-color: #007bff; /* Bleu pour l'icône active */
+    color: white; /* Texte en blanc */
 }
 
 
