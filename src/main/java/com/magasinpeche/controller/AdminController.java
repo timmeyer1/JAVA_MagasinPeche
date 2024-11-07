@@ -136,7 +136,12 @@ public class AdminController {
     // 1. Afficher la liste des concours
     @GetMapping("/concours")
     public String afficherConcours(Model model) {
-        model.addAttribute("concoursList", concoursRepository.findAllByOrderByDateDesc());
+
+        LocalDate today = LocalDate.now();
+
+        // Récupérer les concours à venir, triés par date croissante
+        model.addAttribute("concoursList", concoursRepository.findUpcomingConcoursSortedByDate(today));
+
         return "admin/concours/liste";  // Vue de la liste des concours
     }
 

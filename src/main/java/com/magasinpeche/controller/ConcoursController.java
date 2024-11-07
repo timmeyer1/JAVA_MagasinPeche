@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -44,17 +45,21 @@ public class ConcoursController {
         Client client = clientRepository.findByEmail(emailClient)
                 .orElseThrow(() -> new RuntimeException("Client non trouvé"));
 
-        // Récupérer tous les concours
-        List<Concours> concoursList = concoursRepository.findAllByOrderByDateDesc();
+        LocalDate today = LocalDate.now();
+
+        // Récupérer les concours à venir, triés par date croissante
+        List<Concours> concoursProchains = concoursRepository.findUpcomingConcoursSortedByDate(today);
 
         // Vérifier pour chaque concours si l'utilisateur est déjà inscrit
-        for (Concours concours : concoursList) {
+        for (Concours concours : concoursProchains) {
             boolean dejaInscrit = concours.getParticipations().stream()
-                    .anyMatch(participation -> participation.getClient().equals(client));
+                    .anyMatch(participation -> participation.getClient().equals(client)); // Vérifie si le client est inscrit
             concours.setDejaInscrit(dejaInscrit); // Nous mettons à jour l'état d'inscription de l'utilisateur
         }
 
-        model.addAttribute("concoursList", concoursList);
+        // Ajouter les concours à venir à l'attribut du modèle
+        model.addAttribute("concoursList", concoursProchains);
+
         return "concours/liste";  // Vue qui contient la liste des concours
     }
 
