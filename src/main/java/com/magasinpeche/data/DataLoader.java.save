@@ -1,0 +1,78 @@
+package com.magasinpeche.data;
+
+import com.magasinpeche.model.*;
+import com.magasinpeche.repository.ClientRepository;
+import com.magasinpeche.repository.ConcoursRepository;
+import com.magasinpeche.repository.ProduitRepository;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.util.Arrays;
+
+@Component
+public class DataLoader implements CommandLineRunner {
+
+    private final ProduitRepository produitRepository;
+    private final ConcoursRepository concoursRepository;
+    private final ClientRepository clientRepository;
+
+    public DataLoader(ProduitRepository produitRepository, ConcoursRepository concoursRepository, ClientRepository clientRepository) {
+        this.produitRepository = produitRepository;
+        this.concoursRepository = concoursRepository;
+        this.clientRepository = clientRepository;
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        // Peupler les produits
+        produitRepository.saveAll(Arrays.asList(
+                new Produit("Canne à pêche", "Canne à pêche pour débutants", 25.99, 100, Categorie.CANNE_A_PECHE, "https://www.imprim-deco.fr/6887-large_default/sticker-vinyl-mural-canne-a-peche.jpg"),
+                new Produit("Moulinet", "Moulinet de qualité supérieure", 50.00, 50, Categorie.MOULINET, "https://silureaccess.com/wp-content/uploads/2023/06/moulinet-spinning-okuma-salina.webp"),
+                new Produit("Fil de pêche", "Fil de pêche résistant", 10.99, 200, Categorie.FIL_DE_PECHE, "https://m.media-amazon.com/images/I/61FnKVBOcGL._AC_UF1000,1000_QL80_.jpg"),
+                new Produit("Hameçons", "Hameçons pour pêche en mer", 5.49, 300, Categorie.HAMECONS, "https://www.peche-expert.com/wp-content/uploads/2023/03/7003-BN-hamecon-super-match.jpg"),
+                new Produit("Épuisette", "Épuisette en métal robuste", 15.00, 80, Categorie.EPUISETTE, "https://m.media-amazon.com/images/I/71mAmdNoXxL.jpg"),
+                new Produit("Appâts", "Appâts pour la pêche en rivière", 8.99, 150, Categorie.APPATS, "https://img4.dhresource.com/webp/m/0x0/f3/albu/km/g/22/dd38b0e5-b790-45e7-83e9-78b3d0bb59cc.jpg")
+        ));
+
+        // Peupler les concours
+        Concours concours1 = new Concours();
+        concours1.setNom("Concours Pêche d'Or");
+        concours1.setDate(LocalDate.of(2024, 5, 10));
+        concours1.setLieu("Lac de la ville");
+        concours1.setDescription("Concours annuel de pêche avec de nombreux prix à gagner.");
+        concours1.setDejaInscrit(false);
+        concoursRepository.save(concours1);
+
+        Concours concours2 = new Concours();
+        concours2.setNom("Championnat National de Pêche");
+        concours2.setDate(LocalDate.of(2024, 7, 15));
+        concours2.setLieu("Rivière de Montagne");
+        concours2.setDescription("Championnat pour les pêcheurs expérimentés.");
+        concours2.setDejaInscrit(false);
+        concoursRepository.save(concours2);
+
+        // Créer des clients (exemple avec des rôles)
+        Client admin = new Client();
+        admin.setEmail("admin@admin.fr");
+        admin.setPassword("admin123");
+        admin.setNom("Admin");
+        admin.setPrenom("Admin");
+        admin.setAdresse("1 Rue des Administrateurs, Paris");
+        admin.setTelephone("0101010101");
+        admin.setRole(Role.ADMIN);
+        clientRepository.save(admin);
+
+        Client user = new Client();
+        user.setEmail("test@test.fr");
+        user.setPassword("test123");
+        user.setNom("Test");
+        user.setPrenom("Utilisateur");
+        user.setAdresse("123 Rue des Tests, Lyon");
+        user.setTelephone("0202020202");
+        user.setRole(Role.USER);
+        clientRepository.save(user);
+
+        System.out.println("Données peuplées avec succès !");
+    }
+}

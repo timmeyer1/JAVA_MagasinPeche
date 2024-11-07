@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/header.css">
 </head>
 <body>
-<div th:replace="_parts/_header :: header"></div>
+<div th:insert="~{_parts/_header :: header}"></div>
 
 <main>
     <div class="hp-box">
@@ -38,7 +38,7 @@
 
         <div class="hp-concours">
             <div class="hp-titre">
-                <h2><a href="#">Derniers concours</a></h2>
+                <h2><a th:href="@{/concours}">Derniers concours</a></h2>
             </div>
             <div class="hp-concours-liste">
                 <div class="concours-container">

@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<div th:insert="~{_parts/_header :: header}"></div>
+<div th:replace="_parts/_header :: header"></div>
 
 <main class="shop-box">
     <div class="shop-navbar">

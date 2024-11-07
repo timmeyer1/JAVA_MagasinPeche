@@ -6,7 +6,7 @@
     <link rel="stylesheet" th:href="@{/css/header.css}">
 </head>
 <body>
-<div th:replace="_parts/_header :: header"></div>
+<div th:insert="~{_parts/_header :: header}"></div>
 <h1>Demande de Permis de Pêche</h1>
 <form action="#" th:action="@{/permis/demande}" th:object="${permis}" method="post">
     <input type="hidden" name="clientId" th:value="${clientId}"/>

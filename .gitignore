@@ -35,3 +35,5 @@ build/
 ### Project ###
 uploads/*
 !uploads/.gitkeep
+
+./src/main/java/com/magasinpeche/data

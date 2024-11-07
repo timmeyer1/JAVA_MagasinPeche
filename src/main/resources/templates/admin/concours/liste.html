@@ -11,37 +11,38 @@
 
 <body>
 <!-- Inclure l'en-tête -->
-<div th:replace="_parts/_header :: header"></div>
+<div th:insert="~{_parts/_header :: header}"></div>
+<main>
+    <h1>Gestion des Concours</h1>
 
-<h1>Gestion des Concours</h1>
+    <a href="/admin/concours/ajouter" class="edit-button">Ajouter un Concours</a>
 
-<a href="/admin/concours/ajouter" class="edit-button">Ajouter un Concours</a>
+    <div class="concours-container">
+        <div class="concours-header">
+            <div class="concours-title">Nom</div>
+            <div class="concours-title">Date</div>
+            <div class="concours-title">Lieu</div>
+            <div class="concours-title">Description</div>
+            <div class="concours-title">Actions</div>
+        </div>
 
-<div class="concours-container">
-    <div class="concours-header">
-        <div class="concours-title">Nom</div>
-        <div class="concours-title">Date</div>
-        <div class="concours-title">Lieu</div>
-        <div class="concours-title">Description</div>
-        <div class="concours-title">Actions</div>
-    </div>
-
-    <!-- Parcours de la liste des concours -->
-    <div th:each="concours : ${concoursList}" class="concours-row">
-        <div class="concours-cell" th:text="${concours.nom}"></div>
-        <div class="concours-cell" th:text="${concours.date}"></div>
-        <div class="concours-cell" th:text="${concours.lieu}"></div>
-        <div class="concours-cell" th:text="${concours.description}"></div>
-        <div class="concours-cell">
-            <div class="buttons">
-                <a th:href="@{/admin/concours/modifier/{id}(id=${concours.id})}" class="edit-button">Modifier</a>
-                <a th:href="@{/admin/concours/supprimer/{id}(id=${concours.id})}"
-                   onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce concours ?');"
-                   class="delete-button">Supprimer</a>
+        <!-- Parcours de la liste des concours -->
+        <div th:each="concours : ${concoursList}" class="concours-row">
+            <div class="concours-cell" th:text="${concours.nom}"></div>
+            <div class="concours-cell" th:text="${concours.date}"></div>
+            <div class="concours-cell" th:text="${concours.lieu}"></div>
+            <div class="concours-cell" th:text="${concours.description}"></div>
+            <div class="concours-cell">
+                <div class="buttons">
+                    <a th:href="@{/admin/concours/modifier/{id}(id=${concours.id})}" class="edit-button">Modifier</a>
+                    <a th:href="@{/admin/concours/supprimer/{id}(id=${concours.id})}"
+                       onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce concours ?');"
+                       class="delete-button">Supprimer</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</main>
 </body>
 
 </html>

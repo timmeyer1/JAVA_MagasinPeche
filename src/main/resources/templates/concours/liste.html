@@ -4,46 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des Concours</title>
+    <title>Gestion des Concours</title>
     <link rel="stylesheet" th:href="@{/css/concours.css}">
     <link rel="stylesheet" href="/css/header.css">
 </head>
 
 <body>
 <!-- Inclure l'en-tête -->
-<div th:replace="_parts/_header :: header"></div>
+<div th:insert="~{_parts/_header :: header}"></div>
+<main>
+    <h1>Liste des Concours</h1>
 
-<h1>Concours disponibles</h1>
+    <div class="concours-container">
+        <div class="concours-header">
+            <div class="concours-title">Nom</div>
+            <div class="concours-title">Date</div>
+            <div class="concours-title">Lieu</div>
+            <div class="concours-title">Description</div>
+            <div class="concours-title">Actions</div>
+        </div>
 
-<div class="concours-container">
-    <div class="concours-header">
-        <div class="concours-title">Nom</div>
-        <div class="concours-title">Date <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 64 64"><path fill="currentColor" d="M32 2C15.432 2 2 15.432 2 32s13.432 30 30 30s30-13.432 30-30S48.568 2 32 2m0 47L16 33.695h10.857V15h10.285v18.695H48z"/></svg></div>
-        <div class="concours-title">Lieu</div>
-        <div class="concours-title">Description</div>
-        <div class="concours-title">Actions</div>
-    </div>
-
-    <!-- Parcours de la liste des concours -->
-    <div th:each="concours : ${concoursList}" class="concours-row">
-        <div class="concours-cell" th:text="${concours.nom}"></div>
-        <div class="concours-cell" th:text="${concours.date}"></div>
-        <div class="concours-cell" th:text="${concours.lieu}"></div>
-        <div class="concours-cell" th:text="${concours.description}"></div>
-        <div class="concours-cell">
-            <!-- Formulaire d'inscription -->
-            <form th:action="@{/concours/inscrire/{id}(id=${concours.id})}" method="POST"
-                  onsubmit="return confirm('Voulez-vous vraiment vous inscrire au concours ?');">
-                <button type="submit" class="edit-button"
-                        th:if="${not concours.dejaInscrit}">S'inscrire
-                </button>
-                <button type="button" class="unactive-button"
-                        th:if="${concours.dejaInscrit}" disabled>Déjà inscrit
-                </button>
-            </form>
+        <!-- Parcours de la liste des concours -->
+        <div th:each="concours : ${concoursList}" class="concours-row">
+            <div class="concours-cell" th:text="${concours.nom}"></div>
+            <div class="concours-cell" th:text="${concours.date}"></div>
+            <div class="concours-cell" th:text="${concours.lieu}"></div>
+            <div class="concours-cell" th:text="${concours.description}"></div>
+            <div class="concours-cell">
+                <!-- Formulaire d'inscription -->
+                <form th:action="@{/concours/inscrire/{id}(id=${concours.id})}" method="POST"
+                      onsubmit="return confirm('Voulez-vous vraiment vous inscrire au concours ?');">
+                    <button type="submit" class="edit-button"
+                            th:if="${not concours.dejaInscrit}">S'inscrire
+                    </button>
+                    <button type="button" class="unactive-button"
+                            th:if="${concours.dejaInscrit}" disabled>Déjà inscrit
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-
+</main>
 </body>
+
 </html>

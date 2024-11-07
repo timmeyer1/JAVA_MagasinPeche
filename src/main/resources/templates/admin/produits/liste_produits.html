@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/header.css">
 </head>
 <body>
-<div th:replace="_parts/_header :: header"></div>
+<div th:insert="~{_parts/_header :: header}"></div>
 <h1>Liste des Produits</h1>
 <a th:href="@{/admin/produits/ajouter}">Ajouter un nouveau produit</a>
 <div class="produits-container">

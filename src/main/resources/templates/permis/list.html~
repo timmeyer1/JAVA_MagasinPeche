@@ -15,6 +15,7 @@
     <div class="permis-header">
         <div class="permis-title">Client</div>
         <div class="permis-title">Date de Demande</div>
+        <div class="permis-title">Commentaire</div>
         <div class="permis-title">Statut</div>
         <div class="permis-title">Action</div>
     </div>
@@ -22,6 +23,7 @@
     <div th:each="demande : ${demandes}" class="permis-row">
         <div class="permis-cell" th:text="${demande.client.nom} + ' ' + ${demande.client.prenom}"></div>
         <div class="permis-cell" th:text="${#dates.format(demande.dateDemande, 'dd/MM/yyyy')}"></div>
+        <div class="permis-cell" th:text="${demande.commentaires}"></div>
         <div class="permis-cell" th:text="${demande.statut}"></div>
         <div class="permis-cell">
             <form th:action="@{/permis/traiter/{id}(id=${demande.id})}" method="post">

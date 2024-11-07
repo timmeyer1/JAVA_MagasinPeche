@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/css/header.css">
 </head>
 <body>
-<div th:insert="~{_parts/_header :: header}"></div>
+<div th:replace="_parts/_header :: header"></div>
 <div class="profil-box">
     <div class="profil-nav">
         <div>
