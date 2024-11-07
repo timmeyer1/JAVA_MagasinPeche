@@ -1,7 +1,9 @@
 package com.magasinpeche.controller;
 
 import com.magasinpeche.model.Client;
+import com.magasinpeche.model.Concours;
 import com.magasinpeche.model.Permis;
+import com.magasinpeche.repository.ConcoursRepository;
 import com.magasinpeche.service.ClientService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +14,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 public class ClientController {
 
     @Autowired
     private ClientService clientService;
+
+    @Autowired
+    private ConcoursRepository concoursRepository;
 
     // register
     @GetMapping("/register")
@@ -55,6 +61,10 @@ public class ClientController {
             // Récupération du permis pour le client actuel
             Permis permis = (client != null) ? client.getPermis() : null;
             model.addAttribute("permis", permis); // Ajouter le permis au modèle
+
+            // Récupérer tous les concours auxquels le client est inscrit
+            List<Concours> participations = concoursRepository.findConcoursByClient(client);
+            model.addAttribute("concours", participations);
         }
         return "profil/profil";
     }

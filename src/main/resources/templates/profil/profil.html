@@ -74,7 +74,36 @@
 
         <section id="concours" class="content-section" style="display: none;">
             <h2 class="profil-titre">Mes concours</h2>
-            <p>Concours auxquels l'utilisateur a participé...</p>
+
+            <div th:if="${#lists.isEmpty(concours)}">
+                <p>Vous n'êtes inscrit à aucun concours pour le moment.</p>
+            </div>
+
+            <div th:unless="${#lists.isEmpty(concours)}">
+                <div class="concours-container">
+                    <div class="concours-header">
+                        <div class="concours-title">Nom</div>
+                        <div class="concours-title">Date</div>
+                        <div class="concours-title">Lieu</div>
+                        <div class="concours-title">Description</div>
+                        <div class="concours-title">Action</div>
+                    </div>
+
+                    <div th:each="concours : ${concours}" class="concours-row">
+                        <div class="concours-cell" th:text="${concours.nom}"></div>
+                        <div class="concours-cell" th:text="${concours.date}"></div>
+                        <div class="concours-cell" th:text="${concours.lieu}"></div>
+                        <div class="concours-cell" th:text="${concours.description}"></div>
+                        <!-- désincription -->
+                        <div class="concours-cell">
+                            <form th:action="@{/concours/desinscrire/{id}(id=${concours.id})}" method="get"
+                                  onsubmit="return confirm('Voulez-vous vraiment vous désinscrire de ce concours ?');">
+                                <button type="submit" class="edit-button">Se désinscrire</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="permis" class="content-section" style="display: none;">

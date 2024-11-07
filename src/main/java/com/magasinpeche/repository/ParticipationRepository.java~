@@ -1,6 +1,5 @@
 package com.magasinpeche.repository;
 
-import com.magasinpeche.model.Concours;
 import com.magasinpeche.model.Participation;
 import com.magasinpeche.model.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,5 +14,5 @@ public interface ParticipationRepository extends JpaRepository<Participation, Lo
     List<Participation> findByClient(Client client);
 
     // Rechercher les participations d'un client (avec l'email)
-    Participation findByConcoursAndClient(Concours concours, Client client);
+    List<Participation> findByClientEmail(String email);
 }

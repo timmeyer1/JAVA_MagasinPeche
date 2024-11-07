@@ -12,8 +12,9 @@ public class Participation {
     @JoinColumn(name = "concours_id")
     private Concours concours;
 
-    private String nomParticipant;
-    private String emailParticipant;
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 
     @Enumerated(EnumType.STRING)
     private Statut statut;
@@ -34,20 +35,12 @@ public class Participation {
         this.concours = concours;
     }
 
-    public String getNomParticipant() {
-        return nomParticipant;
+    public Client getClient() {
+        return client;
     }
 
-    public void setNomParticipant(String nomParticipant) {
-        this.nomParticipant = nomParticipant;
-    }
-
-    public String getEmailParticipant() {
-        return emailParticipant;
-    }
-
-    public void setEmailParticipant(String emailParticipant) {
-        this.emailParticipant = emailParticipant;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public Statut getStatut() {

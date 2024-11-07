@@ -31,9 +31,19 @@
         <div class="concours-cell" th:text="${concours.lieu}"></div>
         <div class="concours-cell" th:text="${concours.description}"></div>
         <div class="concours-cell">
-            <a class="edit-button" th:href="@{/concours/inscription/{id}(id=${concours.id})}">S'inscrire</a>
+            <!-- Formulaire d'inscription -->
+            <form th:action="@{/concours/inscrire/{id}(id=${concours.id})}" method="POST"
+                  onsubmit="return confirm('Voulez-vous vraiment vous inscrire au concours ?');">
+                <button type="submit" class="edit-button"
+                        th:if="${not concours.dejaInscrit}">S'inscrire
+                </button>
+                <button type="button" class="unactive-button"
+                        th:if="${concours.dejaInscrit}" disabled>Déjà inscrit
+                </button>
+            </form>
         </div>
     </div>
-</body>
+</div>
 
+</body>
 </html>

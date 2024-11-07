@@ -16,8 +16,6 @@ public class Concours {
     private String lieu;
     private String description;
 
-    private boolean dejaInscrit;
-
     @OneToMany(mappedBy = "concours", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Participation> participations;
 
@@ -67,13 +65,5 @@ public class Concours {
 
     public void setParticipations(List<Participation> participations) {
         this.participations = participations;
-    }
-
-    public boolean isDejaInscrit() {
-        return dejaInscrit;
-    }
-
-    public void setDejaInscrit(boolean dejaInscrit) {
-        this.dejaInscrit = dejaInscrit;
     }
 }
