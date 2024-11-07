@@ -2,9 +2,6 @@ package com.magasinpeche.repository;
 
 import com.magasinpeche.model.Concours;
 import com.magasinpeche.model.Client;
-import com.magasinpeche.model.Produit;
-import org.springframework.cglib.core.Local;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

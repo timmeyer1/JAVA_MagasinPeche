@@ -50,6 +50,9 @@ public class ConcoursController {
         // Récupérer les concours à venir, triés par date croissante
         List<Concours> concoursProchains = concoursRepository.findUpcomingConcoursSortedByDate(today);
 
+        // Log pour vérifier les concours
+        System.out.println("Concours à venir : " + concoursProchains);
+
         // Vérifier pour chaque concours si l'utilisateur est déjà inscrit
         for (Concours concours : concoursProchains) {
             boolean dejaInscrit = concours.getParticipations().stream()

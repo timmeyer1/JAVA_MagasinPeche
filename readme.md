@@ -8,11 +8,14 @@ CREATE DATABASE peche_magasin;
 ```
 (modifier dans application.properties)
 
-### (IntelliJ Idea)
-Démarrer le projet: Maven -> `charger les dépendances`
 
-Lancer le projet.
+Clonez le projet
 
-login : user
+Assurez-vous d'avoir installé toutes les dépendances
 
-password : dans la console
+## Exécuter les fixtures
+`src/main/java/com/magasinpeche/data/DataLoader.java`
+
+Il vous suffit d'enlever le ".save" et de démarrer le projet ensuite.
+
+🔴 Attention, si vous relancez le projet, les fixtures se superposent entraînant ainsi des bugs. 🔴
