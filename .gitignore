@@ -37,3 +37,9 @@ uploads/*
 !uploads/.gitkeep
 
 ./src/main/java/com/magasinpeche/data
+
+*~
+*.swp
+*.swo
+*.bak
+*.save
