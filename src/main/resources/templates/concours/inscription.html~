@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<h1 th:text="'Inscription au concours ' + ${concours.nom}">Inscription</h1>
+
+<form th:action="@{/concours/soumettre}" method="post">
+    <input type="hidden" name="concoursId" th:value="${concours.id}"/>
+    <label for="nomParticipant">Nom:</label>
+    <input type="text" id="nomParticipant" name="nomParticipant" required><br>
+    <label for="emailParticipant">Email:</label>
+    <input type="email" id="emailParticipant" name="emailParticipant" required><br>
+    <button type="submit">Envoyer</button>
+</form>
+
+</body>
+</html>

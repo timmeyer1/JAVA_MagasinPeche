@@ -14,5 +14,4 @@ public interface ConcoursRepository extends JpaRepository<Concours, Long> {
     @Query("SELECT c FROM Concours c JOIN c.participations p WHERE p.emailParticipant = :email")
     List<Concours> findParticipationsByEmailParticipant(@Param("email") String email);
 
-    List<Concours> findAllByOrderByDateDesc();
 }

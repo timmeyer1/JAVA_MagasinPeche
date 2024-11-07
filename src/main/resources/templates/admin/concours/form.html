@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire de Concours</title>
+</head>
+<body>
+<h1 th:text="${concours.id != null ? 'Modifier le Concours' : 'Ajouter un Concours'}"></h1>
+
+<form th:action="@{/admin/concours/soumettre}" method="post">
+    <input type="hidden" th:if="${concours.id != null}" th:value="${concours.id}" name="id" />
+
+    <label for="nom">Nom</label>
+    <input type="text" id="nom" name="nom" th:value="${concours.nom}" required />
+
+    <label for="date">Date</label>
+    <input type="date" id="date" name="date" th:value="${concours.date}" required />
+
+    <label for="lieu">Lieu</label>
+    <input type="text" id="lieu" name="lieu" th:value="${concours.lieu}" required />
+
+    <label for="description">Description</label>
+    <textarea id="description" name="description" required th:text="${concours.description}"></textarea>
+
+    <button type="submit">Soumettre</button>
+</form>
+
+<a href="/admin/concours">Retour à la liste des concours</a>
+</body>
+</html>

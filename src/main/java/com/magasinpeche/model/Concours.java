@@ -1,7 +1,9 @@
 package com.magasinpeche.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Concours {
@@ -14,18 +16,9 @@ public class Concours {
     private String lieu;
     private String description;
 
-    // Constructeurs
-    public Concours() {
-    }
+    @OneToMany(mappedBy = "concours", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Participation> participations;
 
-    public Concours(String nom, LocalDate date, String lieu, String description) {
-        this.nom = nom;
-        this.date = date;
-        this.lieu = lieu;
-        this.description = description;
-    }
-
-    // Getters et Setters
     public Long getId() {
         return id;
     }
@@ -64,5 +57,13 @@ public class Concours {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Participation> getParticipations() {
+        return participations;
+    }
+
+    public void setParticipations(List<Participation> participations) {
+        this.participations = participations;
     }
 }

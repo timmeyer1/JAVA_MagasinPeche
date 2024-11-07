@@ -22,9 +22,9 @@ public class ConcoursController {
     // 1. Afficher la liste des concours disponibles
     @GetMapping
     public String afficherConcours(Model model) {
-        List<Concours> concoursList = concoursRepository.findAllByOrderByDateDesc();
+        List<Concours> concoursList = concoursRepository.findAll();
         model.addAttribute("concoursList", concoursList);
-        return "concours/liste";
+        return "concours/liste";  // Vue pour la liste des concours (templates/concours/liste.html)
     }
 
     // 2. Formulaire d'inscription pour un concours spécifique

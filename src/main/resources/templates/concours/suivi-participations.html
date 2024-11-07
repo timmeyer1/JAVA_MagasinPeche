@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Suivi des participations</title>
+</head>
+<body>
+<h1>Suivi des participations</h1>
+<form action="#" th:action="@{/concours/suivi}" method="get">
+    <label for="email">Email :</label>
+    <input type="email" id="email" name="email" required />
+    <button type="submit">Voir mes participations</button>
+</form>
+
+<ul>
+    <li th:each="participation : ${participations}">
+        <span th:text="${participation.concours.nom}"></span> -
+        <span th:text="${participation.statut}"></span>
+    </li>
+</ul>
+</body>
+</html>

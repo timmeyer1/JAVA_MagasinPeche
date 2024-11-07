@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des concours</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@/{css/header.css}">
+</head>
+<body>
+<div th:replace="_parts/_header :: header"></div>
+
+<h1>Suivi des Participations</h1>
+<ul>
+    <li th:each="participation : ${participations}">
+        <strong th:text="${participation.concours.nom}">Nom du concours</strong> -
+        <span th:text="${participation.statut}">Statut</span>
+    </li>
+</ul>
+
+</body>
+</html>
