@@ -14,7 +14,7 @@ public class Produit {
 
     private String nom;
     private String description;
-    private Double prix;
+    private Float prix;
     private Integer quantite;
 
     @Enumerated(EnumType.STRING)  // Utilisation de l'énumération
@@ -26,7 +26,7 @@ public class Produit {
     public Produit() {
     }
 
-    public Produit(String nom, String description, Double prix, Integer quantite, Categorie categorie, String imageUrl) {
+    public Produit(String nom, String description, Float prix, Integer quantite, Categorie categorie, String imageUrl) {
         this.nom = nom;
         this.description = description;
         this.prix = prix;
@@ -67,11 +67,11 @@ public class Produit {
         this.description = description;
     }
 
-    public Double getPrix() {
+    public Float getPrix() {
         return prix;
     }
 
-    public void setPrix(Double prix) {
+    public void setPrix(Float prix) {
         this.prix = prix;
     }
 

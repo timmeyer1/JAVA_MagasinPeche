@@ -1,17 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body {
+    background-color: #f0f8ff;
+    font-family: 'Kanit', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #f0f8ff;
+}
+
+/* Centrera le main au centre de la page avec des marges à gauche et à droite */
+main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
-    background-color: #f0f8ff;
-    font-family: 'Kanit', sans-serif;
+    margin: 0 auto;  /* Centre le contenu horizontalement */
+    padding: 20px;   /* Ajoute de l'espace autour du main */
+    max-width: 1100px; /* Limite la largeur du contenu à 1100px */
 }
 
+/* Title */
 h1 {
-    text-align: center;
-    margin-bottom: 20px;
     font-size: 24px;
     color: #333;
 }
@@ -20,9 +29,10 @@ h1 {
     border: solid 2px rgb(223, 223, 223);
     border-radius: 10px;
     padding: 20px;
-    width: 70%;
+    width: 100%;  /* Utilise toute la largeur disponible dans le main */
     box-shadow: 0px 4px 10px rgba(23, 26, 71, 0.2);
     background-color: #fff;
+    max-width: 100%;  /* Garde la largeur relative à l'écran */
 }
 
 .permis-header,
