@@ -14,7 +14,11 @@ public class ProduitService {
     private ProduitRepository produitRepository;
 
     public List<Produit> getAllProduits() {
-        return produitRepository.findAllByOrderByDateCreationDesc();
+        List<Produit> produits = produitRepository.findAllByOrderByDateCreationDesc();
+        if (produits == null || produits.isEmpty()) {
+            System.out.println("Aucun produit trouvé dans la base de données");
+        }
+        return produits;
     }
 
     public List<Produit> getDerniersProduits() {

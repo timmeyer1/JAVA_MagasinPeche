@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="'Détails - ' + ${produit.nom}">Détails du produit</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+
+<div class="product-detail">
+    <h1 th:text="${produit.nom}">Nom du produit</h1>
+    <img th:src="${produit.imageUrl}" alt="Image de [[${produit.nom}]]"/>
+    <p th:text="${produit.description}">Description du produit</p>
+    <p><strong>Prix:</strong> <span th:text="${produit.prix} + ' €'"></span></p>
+    <p><strong>Quantité en stock:</strong> <span th:text="${produit.quantite}"></span></p>
+</div>
+
+</body>
+</html>
