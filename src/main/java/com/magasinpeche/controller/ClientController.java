@@ -69,7 +69,6 @@ public class ClientController {
         return "profil/profil";
     }
 
-
     // page de logout
     @GetMapping("/logout")
     public String logout() {

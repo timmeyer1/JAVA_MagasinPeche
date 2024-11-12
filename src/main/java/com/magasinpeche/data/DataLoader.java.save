@@ -8,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -17,7 +18,7 @@ public class DataLoader implements CommandLineRunner {
     private final ProduitRepository produitRepository;
     private final ConcoursRepository concoursRepository;
     private final ClientRepository clientRepository;
-    private final PasswordEncoder passwordEncoder; // Ajout du PasswordEncoder
+    private final PasswordEncoder passwordEncoder;
 
     // Injection de toutes les dépendances, y compris le PasswordEncoder
     public DataLoader(ProduitRepository produitRepository, ConcoursRepository concoursRepository,
@@ -25,19 +26,19 @@ public class DataLoader implements CommandLineRunner {
         this.produitRepository = produitRepository;
         this.concoursRepository = concoursRepository;
         this.clientRepository = clientRepository;
-        this.passwordEncoder = passwordEncoder; // Initialisation du PasswordEncoder
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public void run(String... args) throws Exception {
-        // Peupler les produits
+        // Peupler les produits avec BigDecimal pour les prix
         produitRepository.saveAll(Arrays.asList(
-                new Produit("Canne à pêche", "Canne à pêche pour débutants", 25.99, 100, Categorie.CANNE_A_PECHE, "https://www.imprim-deco.fr/6887-large_default/sticker-vinyl-mural-canne-a-peche.jpg"),
-                new Produit("Moulinet", "Moulinet de qualité supérieure", 50.00, 50, Categorie.MOULINET, "https://silureaccess.com/wp-content/uploads/2023/06/moulinet-spinning-okuma-salina.webp"),
-                new Produit("Fil de pêche", "Fil de pêche résistant", 10.99, 200, Categorie.FIL_DE_PECHE, "https://m.media-amazon.com/images/I/61FnKVBOcGL._AC_UF1000,1000_QL80_.jpg"),
-                new Produit("Hameçons", "Hameçons pour pêche en mer", 5.49, 300, Categorie.HAMECONS, "https://www.peche-expert.com/wp-content/uploads/2023/03/7003-BN-hamecon-super-match.jpg"),
-                new Produit("Épuisette", "Épuisette en métal robuste", 15.00, 80, Categorie.EPUISETTE, "https://m.media-amazon.com/images/I/71mAmdNoXxL.jpg"),
-                new Produit("Appâts", "Appâts pour la pêche en rivière", 8.99, 150, Categorie.APPATS, "https://img4.dhresource.com/webp/m/0x0/f3/albu/km/g/22/dd38b0e5-b790-45e7-83e9-78b3d0bb59cc.jpg")
+                new Produit("Canne à pêche", "Canne à pêche pour débutants", new BigDecimal("25.99"), 100, Categorie.CANNE_A_PECHE, "https://www.imprim-deco.fr/6887-large_default/sticker-vinyl-mural-canne-a-peche.jpg"),
+                new Produit("Moulinet", "Moulinet de qualité supérieure", new BigDecimal("50.00"), 50, Categorie.MOULINET, "https://silureaccess.com/wp-content/uploads/2023/06/moulinet-spinning-okuma-salina.webp"),
+                new Produit("Fil de pêche", "Fil de pêche résistant", new BigDecimal("10.99"), 200, Categorie.FIL_DE_PECHE, "https://m.media-amazon.com/images/I/61FnKVBOcGL._AC_UF1000,1000_QL80_.jpg"),
+                new Produit("Hameçons", "Hameçons pour pêche en mer", new BigDecimal("5.49"), 300, Categorie.HAMECONS, "https://www.peche-expert.com/wp-content/uploads/2023/03/7003-BN-hamecon-super-match.jpg"),
+                new Produit("Épuisette", "Épuisette en métal robuste", new BigDecimal("15.00"), 80, Categorie.EPUISETTE, "https://m.media-amazon.com/images/I/71mAmdNoXxL.jpg"),
+                new Produit("Appâts", "Appâts pour la pêche en rivière", new BigDecimal("8.99"), 150, Categorie.APPATS, "https://img4.dhresource.com/webp/m/0x0/f3/albu/km/g/22/dd38b0e5-b790-45e7-83e9-78b3d0bb59cc.jpg")
         ));
 
         // Peupler les concours

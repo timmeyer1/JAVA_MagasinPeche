@@ -1,6 +1,8 @@
 package com.magasinpeche.model;
 
 import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,10 +16,12 @@ public class Produit {
 
     private String nom;
     private String description;
-    private Float prix;
+
+    // Remplacer Float par BigDecimal pour une meilleure précision
+    private BigDecimal prix;
     private Integer quantite;
 
-    @Enumerated(EnumType.STRING)  // Utilisation de l'énumération
+    @Enumerated(EnumType.STRING)
     private Categorie categorie;
 
     private String imageUrl;
@@ -26,7 +30,7 @@ public class Produit {
     public Produit() {
     }
 
-    public Produit(String nom, String description, Float prix, Integer quantite, Categorie categorie, String imageUrl) {
+    public Produit(String nom, String description, BigDecimal prix, Integer quantite, Categorie categorie, String imageUrl) {
         this.nom = nom;
         this.description = description;
         this.prix = prix;
@@ -35,6 +39,7 @@ public class Produit {
         this.imageUrl = imageUrl;
     }
 
+    // Getters et setters
     public LocalDateTime getDateCreation() {
         return dateCreation;
     }
@@ -67,11 +72,11 @@ public class Produit {
         this.description = description;
     }
 
-    public Float getPrix() {
+    public BigDecimal getPrix() {
         return prix;
     }
 
-    public void setPrix(Float prix) {
+    public void setPrix(BigDecimal prix) {
         this.prix = prix;
     }
 

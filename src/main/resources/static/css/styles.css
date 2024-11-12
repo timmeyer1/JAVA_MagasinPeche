@@ -275,6 +275,52 @@ main {
     color: #666;
 }
 
+
+.profil-content-edit-parameters {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 15px;
+}
+
+.profil-content-edit-parameters svg {
+    background-color: #007bff;
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.profil-content-edit-parameters svg path {
+    transition: transform 0.3s ease;
+    transform-origin: 50% 50%;
+}
+
+.profil-content-edit-parameters svg:hover path {
+    transform: rotate(90deg);
+}
+
+.profil-content-edit-parameters svg:hover  {
+    background-color: #0056b3;
+    transition: background-color 0.3s ease;
+}
+
+/* CSS pour cacher les éléments */
+#edit-form {
+    border: 1px solid red;  /* Pour déboguer et vérifier que le formulaire est bien dans le DOM */
+}
+
+
+/* Assurez-vous que l'élément n'est pas caché par un autre style global */
+.profil-content-info-card {
+    display: block;
+}
+
+
+
+
+
+
 /* Section des concours */
 .concours-container {
     border: solid 2px rgb(223, 223, 223);
