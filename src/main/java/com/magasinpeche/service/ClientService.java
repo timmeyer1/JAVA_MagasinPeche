@@ -27,6 +27,13 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
+    public Client updateProfile(Client client, String nom, String prenom, String Email) {
+        client.setPrenom(prenom);
+        client.setNom(nom);
+        client.setEmail(Email);
+        return clientRepository.save(client);
+    }
+
     public Optional<Client> findByEmail(String email) {
         return clientRepository.findByEmail(email);
     }

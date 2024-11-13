@@ -9,6 +9,7 @@ public class Client {
     private Long id;
 
     private String email;
+    @Column(name = "password", updatable = false)
     private String password;
 
     private String nom;
