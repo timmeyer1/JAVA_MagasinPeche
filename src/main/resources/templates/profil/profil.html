@@ -10,8 +10,7 @@
 <div class="profil-box">
     <div class="profil-nav">
         <div>
-            <!-- TODO A CORRIGER + SAUVEGARDER LE ROLE -->
-            <!--<h2 class="profil-titre"><span th:text="${client.prenom}"></span></h2>-->
+            <h2 class="profil-titre"><span th:text="${client.prenom}"></span></h2>
         </div>
 
         <!-- Barre de navigation latérale -->
@@ -56,8 +55,8 @@
                     <div class="profil-content-info-card">
                         <h3>Téléphone</h3>
                         <p th:text="${client.telephone}" class="info-text"></p>
-                        <input type="text" name="telephone" th:value="${client.telephone}" class="info-input"
-                               style="display:none;">
+                        <input type="number" name="telephone" th:value="${client.telephone}" class="info-input"
+                               style="display:none;" maxlength="10">
                     </div>
                     <div class="profil-content-info-card">
                         <h3>Email</h3>

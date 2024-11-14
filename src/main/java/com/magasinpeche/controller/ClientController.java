@@ -7,6 +7,7 @@ import com.magasinpeche.repository.ConcoursRepository;
 import com.magasinpeche.service.ClientService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.util.List;
@@ -80,28 +82,38 @@ public class ClientController {
             @RequestParam String telephone,
             @RequestParam String email,
             @RequestParam String adresse,
-            Model model) {
+            Principal principal,
+            RedirectAttributes redirectAttributes,
+            HttpServletRequest request) {
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentEmail = authentication.getName();
+        String currentEmail = principal.getName();
         Client client = clientService.findByEmail(currentEmail)
                 .orElseThrow(() -> new NoSuchElementException("Client non trouvé pour l'email : " + currentEmail));
 
-        String existingPassword = client.getPassword();
-
+        // Sauvegarder l'email actuel avant de le changer
+        String previousEmail = client.getEmail();
 
         // Mettre à jour les informations du client
         client.setPrenom(prenom);
         client.setNom(nom);
         client.setTelephone(telephone);
-        client.setEmail(email);
+        client.setEmail(email);  // Modification de l'email
         client.setAdresse(adresse);
 
-        clientService.save(client);  // Sauvegarde les modifications
+        // Sauvegarder les changements dans la base de données
+        clientService.save(client);
 
-        model.addAttribute("client", client);  // Repasser l'objet client mis à jour au modèle
-        model.addAttribute("successMessage", "Votre profil a été mis à jour avec succès !");
-        return "redirect:/profil";  // Retourne à la page de profil avec les modifications
+        // Mettre à jour le contexte de sécurité avec le nouvel email
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null) {
+            // Créer un nouvel objet Authentication avec le nouvel email
+            UsernamePasswordAuthenticationToken newAuth = new UsernamePasswordAuthenticationToken(email, authentication.getCredentials(), authentication.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(newAuth);
+        }
+
+        // Ajouter un message de succès et rediriger vers /profil avec le nouvel email
+        redirectAttributes.addFlashAttribute("successMessage", "Votre profil a été mis à jour avec succès !");
+        return "redirect:/profil";
     }
 
 

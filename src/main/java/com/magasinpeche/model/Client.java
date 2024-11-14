@@ -21,6 +21,7 @@ public class Client {
     private Permis permis;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "role", updatable = false)
     private Role role;
 
     // Getters et setters
