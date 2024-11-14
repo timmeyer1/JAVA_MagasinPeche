@@ -36,17 +36,17 @@ sidebarLinks.forEach(link => {
         // Affiche la section sélectionnée
         showSection(targetSection);
 
-        // Modifie l'URL en ajoutant un paramètre 'section' correspondant à la section active
-        const newUrl = `${window.location.pathname}?section=${targetSection}`;
+        // Modifie l'URL en ajoutant un paramètre vide '' correspondant à la section active
+        const newUrl = `${window.location.pathname}?=${targetSection}`;
         history.pushState({ section: targetSection }, '', newUrl); // Change l'URL sans recharger la page
     });
 });
 
 // Gère le chargement de la page avec un paramètre d'URL
 window.addEventListener('load', function () {
-    // Récupère le paramètre 'section' de l'URL
+    // Récupère le paramètre vide '' de l'URL
     const params = new URLSearchParams(window.location.search);
-    const sectionFromUrl = params.get('section');
+    const sectionFromUrl = params.get('');
 
     // Si un paramètre 'section' est trouvé dans l'URL, sélectionne la section correspondante
     if (sectionFromUrl) {

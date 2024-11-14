@@ -119,9 +119,11 @@
                                 <span class="produit-stock" th:text="'Stock: ' + ${produit.quantite}"></span>
                             </div>
                         </div>
-                        <form th:action="@{/remove-from-cart/{produitId}(produitId=${produit.id})}" method="post">
-                            <button type="submit">Retirer du panier</button>
-                        </form>
+                        <div>
+                            <form th:action="@{/remove-from-cart/{produitId}(produitId=${produit.id})}" method="post">
+                                <button class="action-button" type="submit">Retirer du panier</button>
+                            </form>
+                        </div>
                     </a>
                 </div>
             </div>

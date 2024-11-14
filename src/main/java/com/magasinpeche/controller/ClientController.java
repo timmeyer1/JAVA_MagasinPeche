@@ -177,7 +177,7 @@ public class ClientController {
             }
         }
 
-        return "redirect:/profil?section=produits"; // Redirige vers la page de profil
+        return "redirect:/profil?=produits"; // Redirige vers la page de profil
     }
 
 // ------------------------------------------------------------- LOGOUT -------------------------------------------------------------

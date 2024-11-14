@@ -35,7 +35,7 @@ public class PermisController {
         Client client = clientService.findById(clientId).orElse(null);
         permis.setClient(client);
         permisService.save(permis);
-        return "redirect:/profil?section=permis"; // Redirige vers la liste des demandes
+        return "redirect:/profil?=permis"; // Redirige vers la liste des demandes
     }
 
 
