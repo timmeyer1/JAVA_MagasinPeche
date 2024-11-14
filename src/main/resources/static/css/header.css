@@ -29,7 +29,7 @@ body {
     height: 100%;
     width: 8px;
     background-color: transparent;
-    z-index: 9999; /* S'assurer que la scrollbar est au-dessus du contenu */
+    z-index: 9999;
 }
 
 .header-box {

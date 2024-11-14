@@ -51,6 +51,5 @@ function toggleEditMode() {
 
 function saveProfile() {
     // Soumet le formulaire avec les nouvelles valeurs
-    // Vous pouvez ajouter ici une logique de validation avant soumission
     document.getElementById('profileForm').submit();
 }
