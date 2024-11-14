@@ -545,6 +545,20 @@ main {
     color: #777;
 }
 
+.add-to-cart-btn {
+    padding: 10px 20px;
+    background-color: #0077be;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.add-to-cart-btn:hover {
+    background-color: #005fa3;
+}
 
 
 

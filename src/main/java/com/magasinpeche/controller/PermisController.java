@@ -35,11 +35,11 @@ public class PermisController {
         Client client = clientService.findById(clientId).orElse(null);
         permis.setClient(client);
         permisService.save(permis);
-        return "redirect:/profil"; // Redirige vers la liste des demandes
+        return "redirect:/profil?section=permis"; // Redirige vers la liste des demandes
     }
 
 
-    // /liste et /traiter dans #AdminController
+    // ------------------------------ ADMIN -----------------------------
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/liste")

@@ -8,6 +8,8 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+
     private String email;
     @Column(name = "password", updatable = false)
     private String password;
@@ -23,6 +25,9 @@ public class Client {
     @Enumerated(EnumType.STRING)
     @Column(name = "role", updatable = false)
     private Role role;
+
+    @OneToOne(mappedBy = "client", cascade = CascadeType.ALL)
+    private Panier panier;
 
     // Getters et setters
 
@@ -101,5 +106,15 @@ public class Client {
 
     public void setPermis(Permis permis) {
         this.permis = permis;
+    }
+
+
+    // G&S pour Panier
+    public Panier getPanier() {
+        return panier;
+    }
+
+    public void setPanier(Panier panier) {
+        this.panier = panier;
     }
 }

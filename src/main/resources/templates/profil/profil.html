@@ -35,6 +35,7 @@
 
     <!-- Contenu principal de chaque section -->
     <div class="profil-content">
+
         <section id="infos" class="content-section">
             <form th:action="@{/editprofile}" method="post" id="profileForm">
                 <h2 class="profil-titre">Mes infos</h2>
@@ -98,7 +99,32 @@
 
         <section id="produits" class="content-section" style="display: none;">
             <h2 class="profil-titre">Mes produits</h2>
-            <p>Produits ajoutés ou achetés par l'utilisateur...</p>
+            <p>Produits ajoutés au panier :</p>
+
+            <div th:if="${#lists.isEmpty(panier.produits)}">
+                <p>Votre panier est vide.</p>
+            </div>
+            <div th:unless="${#lists.isEmpty(panier.produits)}">
+                <div th:each="produit : ${panier.produits}" class="produit-box"
+                     th:data-category="${produit.categorie}">
+                    <a class="produit-link" th:href="@{'/shop/boutique/' + ${produit.id}}">
+                        <div class="produit-image">
+                            <img th:src="${produit.imageUrl}" alt="Image de ${produit.nom}"/>
+                        </div>
+                        <div class="produit-details">
+                            <h2 th:text="${produit.nom}"></h2>
+                            <p th:text="${produit.description}"></p>
+                            <div class="produit-footer">
+                                <span class="produit-prix" th:text="${produit.prix} + ' €'"></span>
+                                <span class="produit-stock" th:text="'Stock: ' + ${produit.quantite}"></span>
+                            </div>
+                        </div>
+                        <form th:action="@{/remove-from-cart/{produitId}(produitId=${produit.id})}" method="post">
+                            <button type="submit">Retirer du panier</button>
+                        </form>
+                    </a>
+                </div>
+            </div>
         </section>
 
         <section id="concours" class="content-section" style="display: none;">

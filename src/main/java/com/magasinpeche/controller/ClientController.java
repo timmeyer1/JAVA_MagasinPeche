@@ -1,9 +1,9 @@
 package com.magasinpeche.controller;
 
-import com.magasinpeche.model.Client;
-import com.magasinpeche.model.Concours;
-import com.magasinpeche.model.Permis;
+import com.magasinpeche.model.*;
 import com.magasinpeche.repository.ConcoursRepository;
+import com.magasinpeche.repository.PanierRepository;
+import com.magasinpeche.repository.ProduitRepository;
 import com.magasinpeche.service.ClientService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +12,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -30,6 +28,14 @@ public class ClientController {
 
     @Autowired
     private ConcoursRepository concoursRepository;
+
+    @Autowired
+    private ProduitRepository produitRepository;
+
+    @Autowired
+    private PanierRepository panierRepository;  // Répository Panier
+
+    // ------------------------------------------------------------- AUTHENTICATION -------------------------------------------------------------
 
     // register
     @GetMapping("/register")
@@ -56,6 +62,8 @@ public class ClientController {
         return "login";
     }
 
+    // ------------------------------------------------------------- PROFIL -------------------------------------------------------------
+
     // page de profil
     @GetMapping("/profil")
     public String profil(Model model, Principal principal) {
@@ -67,6 +75,10 @@ public class ClientController {
             // Récupération du permis pour le client actuel
             Permis permis = (client != null) ? client.getPermis() : null;
             model.addAttribute("permis", permis); // Ajouter le permis au modèle
+
+            // Vérifie si le client a un panier
+            Panier panier = panierRepository.findByClient(client).orElse(new Panier());
+            model.addAttribute("panier", panier);
 
             // Récupérer tous les concours auxquels le client est inscrit
             List<Concours> participations = concoursRepository.findConcoursByClient(client);
@@ -116,6 +128,59 @@ public class ClientController {
         return "redirect:/profil";
     }
 
+    // ------------------------------------------------------------- Gestion du stock -------------------------------------------------------------
+    // Ajoute un produit au panier et met à jour le stock
+    @PostMapping("/add-to-cart/{produitId}")
+    public String addToCart(@PathVariable Long produitId, Principal principal) {
+        String email = principal.getName();
+        Client client = clientService.findByEmail(email).orElse(null);
+
+        if (client != null) {
+            // Récupérer le panier existant du client ou en créer un nouveau
+            Panier panier = panierRepository.findByClient(client).orElse(new Panier());
+
+            // Si le panier n'existe pas, on l'associe au client
+            if (panier.getId() == null) {
+                panier.setClient(client); // Associer le panier au client
+            }
+
+            // Récupérer le produit
+            Produit produit = produitRepository.findById(produitId).orElse(null);
+
+            if (produit != null && produit.getQuantite() > 0) {
+                panier.addProduit(produit); // Ajouter le produit au panier
+                produit.setQuantite(produit.getQuantite() - 1); // Réduire le stock du produit
+                produitRepository.save(produit); // Sauvegarder le produit avec stock mis à jour
+                panierRepository.save(panier); // Sauvegarder ou mettre à jour le panier du client
+            }
+        }
+
+        return "redirect:/shop"; // Redirige vers la page de profil
+    }
+
+    // Retire un produit du panier et met à jour le stock
+    @PostMapping("/remove-from-cart/{produitId}")
+    public String removeFromCart(@PathVariable Long produitId, Principal principal) {
+        String email = principal.getName();
+        Client client = clientService.findByEmail(email).orElse(null);
+
+        if (client != null) {
+            Panier panier = panierRepository.findByClient(client).orElse(null);
+            if (panier != null) {
+                Produit produit = produitRepository.findById(produitId).orElse(null);
+                if (produit != null && panier.getProduits().contains(produit)) {
+                    panier.removeProduit(produit); // Retirer le produit du panier
+                    produit.setQuantite(produit.getQuantite() + 1); // Augmenter le stock
+                    produitRepository.save(produit); // Sauvegarder le produit
+                    panierRepository.save(panier); // Sauvegarder le panier
+                }
+            }
+        }
+
+        return "redirect:/profil?section=produits"; // Redirige vers la page de profil
+    }
+
+// ------------------------------------------------------------- LOGOUT -------------------------------------------------------------
 
     // page de logout
     @GetMapping("/logout")

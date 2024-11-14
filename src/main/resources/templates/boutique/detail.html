@@ -24,6 +24,11 @@
             <span class="price" th:text="${produit.prix} + ' €'"></span>
             <span class="stock" th:text="'Stock: ' + ${produit.quantite}"></span>
         </div>
+        <div>
+            <form th:action="@{/add-to-cart/{produitId}(produitId=${produit.id})}" method="post">
+                <button class="add-to-cart-btn">Ajouter au panier</button>
+            </form>
+        </div>
     </div>
 </div>
 </body>

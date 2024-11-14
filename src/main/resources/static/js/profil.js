@@ -5,6 +5,27 @@ const sidebarLinks = document.querySelectorAll('.profil-sidebar a');
 // Récupère toutes les sections de contenu
 const contentSections = document.querySelectorAll('.content-section');
 
+// Fonction pour afficher la section en fonction de son identifiant
+function showSection(targetSection) {
+    // Masque toutes les sections de contenu
+    contentSections.forEach(section => {
+        section.style.display = 'none';
+    });
+
+    // Affiche la section sélectionnée
+    const targetElement = document.getElementById(targetSection);
+    if (targetElement) {
+        targetElement.style.display = 'block';
+    }
+
+    // Supprime la classe active de tous les liens et l'ajoute au lien cliqué
+    sidebarLinks.forEach(link => link.classList.remove('active'));
+    const activeLink = document.querySelector(`.profil-sidebar a[data-section="${targetSection}"]`);
+    if (activeLink) {
+        activeLink.classList.add('active');
+    }
+}
+
 // Ajoute un écouteur d'événements pour chaque lien de la barre latérale
 sidebarLinks.forEach(link => {
     link.addEventListener('click', function (event) {
@@ -12,19 +33,30 @@ sidebarLinks.forEach(link => {
 
         const targetSection = link.getAttribute('data-section');
 
-        // Masque toutes les sections de contenu
-        contentSections.forEach(section => {
-            section.style.display = 'none';
-        });
-
         // Affiche la section sélectionnée
-        document.getElementById(targetSection).style.display = 'block';
+        showSection(targetSection);
 
-        // Supprime la classe active de tous les liens et l'ajoute au lien cliqué
-        sidebarLinks.forEach(link => link.classList.remove('active'));
-        link.classList.add('active');
+        // Modifie l'URL en ajoutant un paramètre 'section' correspondant à la section active
+        const newUrl = `${window.location.pathname}?section=${targetSection}`;
+        history.pushState({ section: targetSection }, '', newUrl); // Change l'URL sans recharger la page
     });
 });
+
+// Gère le chargement de la page avec un paramètre d'URL
+window.addEventListener('load', function () {
+    // Récupère le paramètre 'section' de l'URL
+    const params = new URLSearchParams(window.location.search);
+    const sectionFromUrl = params.get('section');
+
+    // Si un paramètre 'section' est trouvé dans l'URL, sélectionne la section correspondante
+    if (sectionFromUrl) {
+        showSection(sectionFromUrl); // Affiche la section en fonction du paramètre 'section'
+    } else {
+        // Si aucun paramètre 'section' n'est précisé, affiche la première section par défaut
+        showSection('infos');
+    }
+});
+
 
 // ----------------------------------- PAGE MODIF -----------------------------------
 

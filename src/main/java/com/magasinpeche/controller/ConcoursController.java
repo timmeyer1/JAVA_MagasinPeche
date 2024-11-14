@@ -130,6 +130,6 @@ public class ConcoursController {
             }
         }
 
-        return "redirect:/profil"; // Redirige vers la page de profil après désinscription
+        return "redirect:/profil?section=concours"; // Redirige vers la page de profil après désinscription
     }
 }
