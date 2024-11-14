@@ -5,16 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="'Détails - ' + ${produit.nom}">Détails du produit</title>
     <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
 </head>
 <body>
+<div th:insert="~{_parts/_header :: header}"></div>
 
-<div class="product-detail">
-    <h1 th:text="${produit.nom}">Nom du produit</h1>
-    <img th:src="${produit.imageUrl}" alt="Image de [[${produit.nom}]]"/>
-    <p th:text="${produit.description}">Description du produit</p>
-    <p><strong>Prix:</strong> <span th:text="${produit.prix} + ' €'"></span></p>
-    <p><strong>Quantité en stock:</strong> <span th:text="${produit.quantite}"></span></p>
+<div class="detail-box">
+    <div class="detail-img">
+        <img th:src="${produit.imageUrl}" alt="Image de [[${produit.nom}]]"/>
+    </div>
+    <div class="detail-content">
+        <div class="detail-content-header">
+            <h1 th:text="${produit.nom}"></h1>
+            <h2 th:text="${produit.categorie}"></h2>
+        </div>
+        <p th:text="${produit.description}"></p>
+        <div class="detail-content-footer">
+            <span class="price" th:text="${produit.prix} + ' €'"></span>
+            <span class="stock" th:text="'Stock: ' + ${produit.quantite}"></span>
+        </div>
+    </div>
 </div>
-
 </body>
 </html>

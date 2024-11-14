@@ -495,6 +495,86 @@ main {
     color: white; /* Texte en blanc */
 }
 
+/* -------------------------------- PAGE BOUTIQUE DETAILS ------------------------------- */
+
+
+.detail-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 20px auto;
+    width: 90%;
+    gap: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.detail-img img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.detail-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 10px;
+}
+
+.detail-content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+}
+
+.detail-content-header h1 {
+    font-size: 2em;
+    color: #333;
+}
+
+.detail-content-header h2 {
+    font-size: 1.2em;
+    color: #0077be;
+}
+
+.detail-content p {
+    color: #555;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.detail-content-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+.detail-content-footer span {
+    color: #0077be;
+}
+
+.detail-content-footer .price {
+    font-size: 1.5em;
+    color: #0077be;
+}
+
+.detail-content-footer .stock {
+    font-style: italic;
+    color: #777;
+}
+
+
+
 
 
 /* -------------------------------- Boutons -------------------------------- */
