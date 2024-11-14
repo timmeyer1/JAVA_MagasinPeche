@@ -33,6 +33,7 @@ public class DataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
         // Peupler les produits avec BigDecimal pour les prix
         produitRepository.saveAll(Arrays.asList(
+                new Produit("Gants", "Protège les mains du frottement des cordages en voile légère", new BigDecimal("19.00"), 2, Categorie.GANTS, "https://www.leurredelapeche.fr/35226-large_default/gants-savage-gear-neoprene.jpg"),
                 new Produit("Canne à pêche", "Canne à pêche pour débutants", new BigDecimal("25.99"), 100, Categorie.CANNE_A_PECHE, "https://www.imprim-deco.fr/6887-large_default/sticker-vinyl-mural-canne-a-peche.jpg"),
                 new Produit("Moulinet", "Moulinet de qualité supérieure", new BigDecimal("50.00"), 50, Categorie.MOULINET, "https://silureaccess.com/wp-content/uploads/2023/06/moulinet-spinning-okuma-salina.webp"),
                 new Produit("Fil de pêche", "Fil de pêche résistant", new BigDecimal("10.99"), 200, Categorie.FIL_DE_PECHE, "https://m.media-amazon.com/images/I/61FnKVBOcGL._AC_UF1000,1000_QL80_.jpg"),
