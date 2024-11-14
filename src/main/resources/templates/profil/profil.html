@@ -94,6 +94,15 @@
 
                 <!-- Bouton de validation des modifications -->
                 <button id="saveButton" style="display:none;" onclick="saveProfile()">Enregistrer</button>
+                <!-- Message de succès -->
+                <div th:if="${successMessage}" class="alert alert-success">
+                    <span th:text="${successMessage}"></span>
+                </div>
+
+                <!-- Message d'erreur -->
+                <div th:if="${errorMessage}" class="alert alert-danger">
+                    <span th:text="${errorMessage}"></span>
+                </div>
             </form>
         </section>
 

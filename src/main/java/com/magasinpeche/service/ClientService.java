@@ -42,4 +42,9 @@ public class ClientService {
     public Optional<Client> findById(Long id) {
         return clientRepository.findById(id);
     }
+
+    public boolean existsByEmail(String email) {
+        return clientRepository.existsByEmail(email);
+    }
+
 }

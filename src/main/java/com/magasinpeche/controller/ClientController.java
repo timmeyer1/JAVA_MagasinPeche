@@ -105,6 +105,13 @@ public class ClientController {
         // Sauvegarder l'email actuel avant de le changer
         String previousEmail = client.getEmail();
 
+        // Vérification si l'email est déjà utilisé par un autre utilisateur
+        if (!email.equals(previousEmail) && clientService.existsByEmail(email)) {
+            // Si l'email est déjà utilisé, ajouter un message d'erreur et rediriger vers le profil
+            redirectAttributes.addFlashAttribute("errorMessage", "❌ Cet email est déjà utilisé par un autre utilisateur.");
+            return "redirect:/profil";
+        }
+
         // Mettre à jour les informations du client
         client.setPrenom(prenom);
         client.setNom(nom);
@@ -124,7 +131,7 @@ public class ClientController {
         }
 
         // Ajouter un message de succès et rediriger vers /profil avec le nouvel email
-        redirectAttributes.addFlashAttribute("successMessage", "Votre profil a été mis à jour avec succès !");
+        redirectAttributes.addFlashAttribute("successMessage", "✅ Votre profil a été mis à jour avec succès !");
         return "redirect:/profil";
     }
 
