@@ -134,7 +134,8 @@
         <div class="hp-produits-liste">
             <div class="produits-container" th:fragment="produits-fragment">
                 <div th:each="produit : ${produits}" class="produit-box"
-                     th:data-category="${produit.categorie}">
+                     th:data-category="${produit.categorie}"
+                     th:style="${produit.quantite == 0 ? 'display: none;' : ''}">
                     <a class="produit-link" th:href="@{'/shop/boutique/' + ${produit.id}}">
                         <div class="produit-image">
                             <img th:src="${produit.imageUrl}" alt="Image de ${produit.nom}"/>

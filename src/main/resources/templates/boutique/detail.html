@@ -26,7 +26,12 @@
         </div>
         <div>
             <form th:action="@{/add-to-cart/{produitId}(produitId=${produit.id})}" method="post">
-                <button class="add-to-cart-btn">Ajouter au panier</button>
+                <div th:if="${produit.quantite > 0}">
+                    <button class="add-to-cart-btn">Ajouter au panier</button>
+                </div>
+                <div th:if="${produit.quantite == 0}">
+                    <span>Ce produit est en rupture de stock.</span>
+                </div>
             </form>
         </div>
     </div>
