@@ -72,7 +72,6 @@ main {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin-left: 20px;
 }
 
 .produit-box {
@@ -81,7 +80,6 @@ main {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 15px 0;
     width: 100%;
-    max-width: 600px;
     display: flex;
     align-items: flex-start;
     transition: transform 0.2s;
