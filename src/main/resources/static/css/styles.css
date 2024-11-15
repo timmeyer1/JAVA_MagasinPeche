@@ -105,6 +105,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .produit-image img {
@@ -162,6 +163,25 @@ main {
     background: #007bff;
     color: white;
 }
+
+.produit-image.hors-stock img {
+    filter: grayscale(100%);
+    opacity: 0.5;
+}
+
+.produit-indicateur-hors-stock {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: red;
+    color: white;
+    padding: 5px 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+
 
 
 /* -------------------------------- PAGE PROFIL -------------------------------- */
