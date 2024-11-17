@@ -2,19 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Demande de Permis de Pêche</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/css/permis.css}">
     <link rel="stylesheet" th:href="@{/css/header.css}">
 </head>
 <body>
-<div th:insert="~{_parts/_header :: header}"></div>
-<h1>Demande de Permis de Pêche</h1>
-<form action="#" th:action="@{/permis/demande}" th:object="${permis}" method="post">
-    <input type="hidden" name="clientId" th:value="${clientId}"/>
 
-    <label for="commentaires">Commentaires:</label>
-    <textarea id="commentaires" th:field="*{commentaires}"></textarea>
-    <button type="submit">Soumettre la Demande</button>
-</form>
-<a class="action-button" th:href="@{/profil}">Retour</a>
+<div th:insert="~{_parts/_header :: header}"></div>
+
+<main class="demande-container">
+    <h1 class="demande-title">Demande de Permis de Pêche</h1>
+
+    <form action="#" th:action="@{/permis/demande}" th:object="${permis}" method="post" class="demande-form">
+        <input type="hidden" name="clientId" th:value="${clientId}"/>
+
+        <label for="commentaires" class="demande-label">Commentaires:</label>
+        <textarea id="commentaires" th:field="*{commentaires}" placeholder="Ajoutez vos commentaires ici..." class="demande-textarea"></textarea>
+
+        <button type="submit" class="demande-submit">Soumettre la Demande</button>
+    </form>
+
+    <a class="demande-return" th:href="@{/profil}">Retour</a>
+</main>
+
 </body>
 </html>

@@ -1,5 +1,6 @@
 /* Importation des polices */
-@import url("https://fonts.googleapis.com/css?family=Oswald|Roboto");
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 
 /* Définition des couleurs */
 :root {
@@ -32,6 +33,7 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  flex-direction: column;
 }
 
 a {
@@ -43,6 +45,16 @@ a {
 
 a:hover {
   color: var(--color);
+}
+
+/* Titre principal */
+.page-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 36px;
+  color: #333;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 /* Styles du poisson */
@@ -79,7 +91,7 @@ a:hover {
   margin: 40px;
   padding: 25px 20px 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  width: 320px;
+  width: 400px; /* Augmenter la largeur */
   box-sizing: border-box;
   z-index: 1;
 }
@@ -95,6 +107,7 @@ a:hover {
   margin: 0;
 }
 
+/* Bouton de la carte */
 .card_button {
   border-radius: 4px;
   border: none;
@@ -152,7 +165,7 @@ a:hover {
 .input_field:focus + .input_label,
 .input_field:valid + .input_label {
   color: #665856;
-  transform: translateY(-25px);
+  transform: translateY(-20px);
 }
 
 .input_eye {

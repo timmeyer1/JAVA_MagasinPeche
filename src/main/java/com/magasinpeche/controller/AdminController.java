@@ -118,7 +118,7 @@ public class AdminController {
     @GetMapping("/produits/supprimer/{id}")
     public String supprimerProduit(@PathVariable Long id) {
         produitService.deleteProduit(id);
-        return "admin/produits/confirmation_suppression";
+        return "redirect:/admin/produits";  // Redirection vers la liste des produits
     }
 
     @DeleteMapping("/produits/{id}")

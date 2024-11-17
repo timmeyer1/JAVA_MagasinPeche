@@ -4,28 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire de Concours</title>
+    <link rel="stylesheet" th:href="@{/css/concours.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
 </head>
 <body>
-<h1 th:text="${concours.id != null ? 'Modifier le Concours' : 'Ajouter un Concours'}"></h1>
 
-<form th:action="@{/admin/concours/soumettre}" method="post">
-    <input type="hidden" th:if="${concours.id != null}" th:value="${concours.id}" name="id" />
+<div th:insert="~{_parts/_header :: header}"></div>
 
-    <label for="nom">Nom</label>
-    <input type="text" id="nom" name="nom" th:value="${concours.nom}" required />
+<main class="form-container">
+    <h1 class="form-title" th:text="${concours.id != null ? 'Modifier le Concours' : 'Ajouter un Concours'}"></h1>
 
-    <label for="date">Date</label>
-    <input type="date" id="date" name="date" th:value="${concours.date}" required />
+    <form th:action="@{/admin/concours/soumettre}" method="post" class="form-content">
+        <input type="hidden" th:if="${concours.id != null}" th:value="${concours.id}" name="id" />
 
-    <label for="lieu">Lieu</label>
-    <input type="text" id="lieu" name="lieu" th:value="${concours.lieu}" required />
+        <div class="form-group">
+            <label for="nom" class="form-label">Nom</label>
+            <input type="text" id="nom" name="nom" th:value="${concours.nom}" required class="form-input" />
+        </div>
 
-    <label for="description">Description</label>
-    <textarea id="description" name="description" required th:text="${concours.description}"></textarea>
+        <div class="form-group">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" id="date" name="date" th:value="${concours.date}" required class="form-input" />
+        </div>
 
-    <button type="submit">Soumettre</button>
-</form>
+        <div class="form-group">
+            <label for="lieu" class="form-label">Lieu</label>
+            <input type="text" id="lieu" name="lieu" th:value="${concours.lieu}" required class="form-input" />
+        </div>
 
-<a href="/admin/concours">Retour à la liste des concours</a>
+        <div class="form-group">
+            <label for="description" class="form-label">Description</label>
+            <textarea id="description" name="description" required th:text="${concours.description}" class="form-textarea"></textarea>
+        </div>
+
+        <div class="form-buttons">
+            <button type="submit" class="button-submit">Soumettre</button>
+            <a href="/admin/concours" class="button-cancel">Retour à la liste des concours</a>
+        </div>
+    </form>
+</main>
+
 </body>
 </html>
